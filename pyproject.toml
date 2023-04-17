@@ -1,0 +1,50 @@
+[tool.poetry]
+name = "app"
+version = "0.1.0"
+description = ""
+authors = ["Bruno Botelho <bruno.botelho.br@gmail.com>"]
+readme = "README.md"
+packages = [{include = "app", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+isort = "^5.12.0"
+flake8 = "^6.0.0"
+pylint = "^2.17.2"
+pyflakes = "^3.0.1"
+mypy = "^1.2.0"
+autoflake = "^2.1.0"
+pytest = "^7.3.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line_length = 88
+ignore = "E203"
+
+[tool.isort]
+line_length = 88
+atomic = true
+profile = "black"
+skip_gitignore = true
+
+[tool.autoflake]
+check = true
+
+[tool.flake8]
+max-line-length = 88
+ignore = []
+per-file-ignores = []
+count = true
+
+[tool.mypy]
+max-line-length = 88
+warn_return_any = true
+
+[tool.pylint]
+max-line-length = 88
