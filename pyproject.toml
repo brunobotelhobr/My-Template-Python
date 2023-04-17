@@ -26,11 +26,11 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.black]
-line_length = 88
+line_length = 79
 ignore = "E203"
 
 [tool.isort]
-line_length = 88
+line_length = 79
 atomic = true
 profile = "black"
 skip_gitignore = true

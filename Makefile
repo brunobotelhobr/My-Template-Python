@@ -20,8 +20,13 @@ help:
 	@echo ""
 	@echo "Check the Makefile to know exactly what each target is doing."
 
-.PHONY: install
-install: 
+.PHONY: install-dev
+install-prod: $(INSTALL_STAMP)
+	@if [ -z $(POETRY) ]; then echo "Poetry could not be found."; exit 2; fi
+	$(POETRY) install --without dev --sync
+
+.PHONY: install-dev
+install-dev: $(INSTALL_STAMP)
 	@if [ -z $(POETRY) ]; then echo "Poetry could not be found."; exit 2; fi
 	$(POETRY) install --sync
 
@@ -35,7 +40,7 @@ format: $(INSTALL_STAMP)
 	$(POETRY) run autoflake --recursive tests
 
 .PHONY: lint
-lint: $(INSTALL_STAMP)
+lint: 
 	$(POETRY) run flake8 --config pyproject.toml src
 	$(POETRY) run flake8 --config pyproject.toml tests
 	$(POETRY) run mypy --config-file pyproject.toml src
@@ -44,27 +49,27 @@ lint: $(INSTALL_STAMP)
 	$(POETRY) run pylint --rcfile pyproject.toml tests
 
 .PHONY: bom
-bom: $(INSTALL_STAMP)
+bom: 
 	$(POETRY) run cyclonedx-py -p --format json -F -o requirements/bom/bom.json
 	$(POETRY) run cyclonedx-py -p --format xml -F -o requirements/bom/bom.xml
 
 .PHONY: requirements
-requirements: $(INSTALL_STAMP)
+requirements: 
 	$(POETRY) export --format requirements.txt > requirements/pip/requirements.txt
 	echo "-r requirements.txt" > requirements/pip/requirements-dev.txt
 	$(POETRY) export --with dev --format requirements.txt >> requirements/pip/requirements-dev.txt
 
-.PHONY: update
+.PHONY: 
 update: $(INSTALL_STAMP)
 	$(POETRY) self update 
 	$(POETRY) update
 	$(POETRY) export 
 .PHONY: test
-test: $(INSTALL_STAMP)
+test:
 	pytest 
 
 .PHONY: test-cov
-test-cov: $(INSTALL_STAMP)
+test-cov: 
 	pytest --cov=src/app --cov-report term
 
 clean:
