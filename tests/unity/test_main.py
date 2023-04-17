@@ -1,3 +1,4 @@
+"""Test the main function."""
 from app.main import main
 
 

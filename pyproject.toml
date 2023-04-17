@@ -18,6 +18,8 @@ pyflakes = "^3.0.1"
 mypy = "^1.2.0"
 autoflake = "^2.1.0"
 pytest = "^7.3.1"
+cyclonedx-bom = "^3.11.0"
+pytest-cov = "^4.0.0"
 
 [build-system]
 requires = ["poetry-core"]
@@ -37,14 +39,14 @@ skip_gitignore = true
 check = true
 
 [tool.flake8]
-max-line-length = 88
+max-line-length = 79
 ignore = []
 per-file-ignores = []
 count = true
 
 [tool.mypy]
-max-line-length = 88
 warn_return_any = true
+ignore_missing_imports = true
 
 [tool.pylint]
-max-line-length = 88
+max-line-length = 79
