@@ -8,16 +8,28 @@ Install [Docker](https://docs.docker.com/get-docker/)
 Install [Make](https://www.gnu.org/software/make/)
 Install [Python](https://www.python.org/downloads/)
 Install [Poetry](https://python-poetry.org/docs/#installation)
+Install [Trivy](https://aquasecurity.github.io/trivy/v0.40/getting-started/installation/)
 
 
 ## How to use
 Be sure you have installed all the requirements and that you on the desired python Version, you can check it with: 
     `python --version`
 
-### Create a new project
+## Customize
+
+## Make Commands
 
 
-extras poetry add --dev bandit -E toml 
+## Hints
+- How add a Dev Package
+    `poetry add --dev <package-name>`
+- How add a Prod Package
+    `poetry add <package-name>`
+- How add a Package with extras
+    `poetry add <package-name> -E <extras>`
+- How remove a Package
+    `poetry remove <package-name>`
+
 
 Refactoring Code
 echo "Running black..."
