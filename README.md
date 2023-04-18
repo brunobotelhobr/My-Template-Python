@@ -31,8 +31,6 @@ gera requirements.txt
 GERA BOM
 temos testes
 
-
->> Make File
 >> Container
 >> Env
 
@@ -41,3 +39,28 @@ CLI
 APP
 API
 API WITH MODULES
+
+
+{
+    "editor.rulers": [
+        88
+    ],
+    "python.formatting.provider": "black",
+    "python.linting.enabled": true,
+    "python.linting.lintOnSave": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": [
+        "--max-line-length=88",
+        "--extend-ignore=E203,E501,W503",
+        "--exclude=.venv"
+    ],
+    "python.sortImports.args": [
+        "--profile=black"
+    ],
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    }
+}

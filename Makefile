@@ -9,6 +9,7 @@ help:
 	@echo ""
 	@echo " install-dev   install all the development dependencies"
 	@echo " install-prod  install only the production dependencies"
+	@echo " info          show the project information"
 	@echo " format        reformat code"
 	@echo " lint          run the code linters"
 	@echo " update        update the dependencies"
@@ -28,7 +29,15 @@ install-prod: $(INSTALL_STAMP)
 .PHONY: install-dev
 install-dev: $(INSTALL_STAMP)
 	@if [ -z $(POETRY) ]; then echo "Poetry could not be found."; exit 2; fi
+	$(POETRY) shell
 	$(POETRY) install --sync
+	$(POETRY) run pre-commit install
+
+.PHONY: info
+info:
+	$(POETRY) env info
+	$(POETRY) check
+	$(POETRY) show
 
 .PHONY: format
 format: $(INSTALL_STAMP)
@@ -72,6 +81,7 @@ test:
 test-cov: 
 	pytest --cov=src/app --cov-report term
 
+.PHONY: clean 
 clean:
 	rm -rf .venv
 	rm -rf .pytest_cache
