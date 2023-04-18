@@ -12,11 +12,18 @@ help:
 	@echo " info          show the project information"
 	@echo " format        reformat code"
 	@echo " lint          run the code linters"
-	@echo " update        update the dependencies"
+	@echo " upgrade       upgrade the dependencies"
+
 	@echo " bom           generate the bill of materials"
 	@echo " req           export the requirements to a requirements.txt file"
 	@echo " test          run all the tests"
 	@echo " test-cov      run all the tests and show test coverage"
+	@echo " enable-hooks  enable the pre-commit hooks"
+	@echo " disable-hooks disable the pre-commit hooks"
+	@echo " project-meta  update the project metadata data, like version and name"
+	@echo " build         build the package"
+	@echo " pypi-token    set the pypi API token"
+	@echo " publish-pypi  publish the package to pypi"
 	@echo " clean         remove all temporary files"
 	@echo ""
 	@echo "Check the Makefile to know exactly what each target is doing."
@@ -24,13 +31,13 @@ help:
 .PHONY: install-dev
 install-prod: $(INSTALL_STAMP)
 	@if [ -z $(POETRY) ]; then echo "Poetry could not be found."; exit 2; fi
-	$(POETRY) install --without dev --sync
+	$(POETRY) install --without dev
 
 .PHONY: install-dev
 install-dev: $(INSTALL_STAMP)
 	@if [ -z $(POETRY) ]; then echo "Poetry could not be found."; exit 2; fi
 	$(POETRY) shell
-	$(POETRY) install --sync
+	$(POETRY) install
 	$(POETRY) run pre-commit install
 
 .PHONY: info
@@ -59,8 +66,8 @@ lint:
 
 .PHONY: bom
 bom: 
-	$(POETRY) run cyclonedx-py -p --format json -F -o requirements/bom/bom.json
-	$(POETRY) run cyclonedx-py -p --format xml -F -o requirements/bom/bom.xml
+	$(POETRY) run cyclonedx-py -p -pb --format json -F -o meta/bom/bom.json
+	$(POETRY) run cyclonedx-py -p -pb --format xml -F -o meta/bom/bom.xml
 
 .PHONY: requirements
 requirements: 
@@ -68,8 +75,8 @@ requirements:
 	echo "-r requirements.txt" > requirements/pip/requirements-dev.txt
 	$(POETRY) export --with dev --format requirements.txt >> requirements/pip/requirements-dev.txt
 
-.PHONY: update
-update: $(INSTALL_STAMP)
+.PHONY: upgrade
+upgrade: $(INSTALL_STAMP)
 	$(POETRY) self update 
 	$(POETRY) update
 	$(POETRY) export 
@@ -82,9 +89,31 @@ test:
 test-cov: 
 	$(POETRY) run pytest --cov=src/app --cov-report term
 
+.PHONY: enable-hooks
+enable-hooks: 
+	$(POETRY) run pre-commit install
+
+.PHONY: disable-hooks
+disable-hooks: 
+	$(POETRY) run pre-commit uninstall
+
+.PHONY: build-pypi
+build: 
+	$(POETRY) build
+
+.PHONY: publish-pypi
+publish-pypi: 
+	$(POETRY) publish
+
+.PHONY: project-meta 
+project-meta:
+	python scripts/update-project-properties.py 
+
 .PHONY: clean 
 clean:
 	rm -rf .venv
 	rm -rf .pytest_cache
 	rm -rf .mypy_cache
 	rm -rf .coverage
+	find . -type d -name __pycache__ -exec rm -r {} +
+
