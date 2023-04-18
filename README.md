@@ -16,6 +16,9 @@ Be sure you have installed all the requirements and that you on the desired pyth
 
 ### Create a new project
 
+
+extras poetry add --dev bandit -E toml 
+
 Refactoring Code
 echo "Running black..."
 echo "Running isort..."
@@ -40,7 +43,13 @@ APP
 API
 API WITH MODULES
 
-
+docs
+sast
+sca
+contaiber
+trivy
+build publish
+install
 {
     "editor.rulers": [
         88

@@ -20,6 +20,9 @@ autoflake = "^2.1.0"
 pytest = "^7.3.1"
 cyclonedx-bom = "^3.11.0"
 pytest-cov = "^4.0.0"
+pre-commit = "^3.2.2"
+bandit = {version = "^1.7.5", extras = ["toml"]}
+safety = "^2.3.5"
 
 [build-system]
 requires = ["poetry-core"]
@@ -50,3 +53,8 @@ ignore_missing_imports = true
 
 [tool.pylint]
 max-line-length = 79
+
+[tool.bandit]
+exclude_dirs = ["tests"]
+tests = []
+skips = []

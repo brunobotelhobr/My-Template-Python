@@ -1,6 +1,8 @@
 """Main module"""
+
+
 def main():
     """Entry point for project_name."""
-    h = "Hello World!"
-    print(h)
-    return h
+    message = "Hello World!"
+    print(message)
+    return message

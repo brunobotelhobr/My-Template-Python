@@ -68,18 +68,19 @@ requirements:
 	echo "-r requirements.txt" > requirements/pip/requirements-dev.txt
 	$(POETRY) export --with dev --format requirements.txt >> requirements/pip/requirements-dev.txt
 
-.PHONY: 
+.PHONY: update
 update: $(INSTALL_STAMP)
 	$(POETRY) self update 
 	$(POETRY) update
 	$(POETRY) export 
+
 .PHONY: test
 test:
-	pytest 
+	$(POETRY) run pytest 
 
 .PHONY: test-cov
 test-cov: 
-	pytest --cov=src/app --cov-report term
+	$(POETRY) run pytest --cov=src/app --cov-report term
 
 .PHONY: clean 
 clean:
