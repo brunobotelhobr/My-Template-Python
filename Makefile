@@ -15,13 +15,14 @@ help:
 	@echo " upgrade       upgrade the dependencies"
 
 	@echo " bom           generate the bill of materials"
+	
 	@echo " req           export the requirements to a requirements.txt file"
 	@echo " test          run all the tests"
 	@echo " test-cov      run all the tests and show test coverage"
 	@echo " enable-hooks  enable the pre-commit hooks"
 	@echo " disable-hooks disable the pre-commit hooks"
 	@echo " project-meta  update the project metadata data, like version and name"
-	@echo " build         build the package"
+	@echo " build-pypi    build the package"
 	@echo " pypi-token    set the pypi API token"
 	@echo " publish-pypi  publish the package to pypi"
 	@echo " clean         remove all temporary files"
@@ -69,11 +70,11 @@ bom:
 	$(POETRY) run cyclonedx-py -p -pb --format json -F -o meta/bom/bom.json
 	$(POETRY) run cyclonedx-py -p -pb --format xml -F -o meta/bom/bom.xml
 
-.PHONY: requirements
-requirements: 
-	$(POETRY) export --format requirements.txt > requirements/pip/requirements.txt
-	echo "-r requirements.txt" > requirements/pip/requirements-dev.txt
-	$(POETRY) export --with dev --format requirements.txt >> requirements/pip/requirements-dev.txt
+.PHONY: req
+req: 
+	$(POETRY) export --format requirements.txt > meta/requirements/requirements.txt
+	echo "-r requirements.txt" > meta/requirements/requirements-dev.txt
+	$(POETRY) export --with dev --format requirements.txt >> meta/requirements/requirements-dev.txt
 
 .PHONY: upgrade
 upgrade: $(INSTALL_STAMP)
@@ -97,17 +98,24 @@ enable-hooks:
 disable-hooks: 
 	$(POETRY) run pre-commit uninstall
 
+.PHONY: project-meta 
+project-meta:
+	python scripts/update-project-properties.py 
+
 .PHONY: build-pypi
-build: 
+build-pypi: 
 	$(POETRY) build
+
+.PHONY: pypi-token
+pypi-token: 
+	echo "Type PyPI API token:"
+	read -s PYPI_TOKEN
+	$(POETRY) config pypi-token.pypi $(PYPI_TOKEN)
+	unset PYPI_TOKEN
 
 .PHONY: publish-pypi
 publish-pypi: 
 	$(POETRY) publish
-
-.PHONY: project-meta 
-project-meta:
-	python scripts/update-project-properties.py 
 
 .PHONY: clean 
 clean:
@@ -115,5 +123,6 @@ clean:
 	rm -rf .pytest_cache
 	rm -rf .mypy_cache
 	rm -rf .coverage
+	rm -rf dist
 	find . -type d -name __pycache__ -exec rm -r {} +
 
