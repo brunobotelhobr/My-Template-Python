@@ -4,6 +4,7 @@ version = "0.1.0"
 license = "MIT"
 description = ""
 authors = ["Bruno Botelho <bruno.botelho.br@gmail.com>"]
+maintainers = ["Bruno Botelho <bruno.botelho.br@gmail.com>"]
 readme = "README.md"
 packages = [{include = "app", from = "src"}]
 repository = ""

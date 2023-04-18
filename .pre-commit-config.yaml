@@ -4,7 +4,7 @@ repos:
     - id: int-flake8-src
       name: lint-flake8-src
       entry: poetry
-      args: [run, flake8, --config, pyproject.toml, src]
+      args: [run, flake8, --config, pyproject.toml, ./src]
       language: system
       always_run: true
       pass_filenames: false
@@ -12,7 +12,7 @@ repos:
     - id: int-flake8-tests
       name: lint-flake8-tests
       entry: poetry
-      args: [run, flake8, --config, pyproject.toml, tests]
+      args: [run, flake8, --config, pyproject.toml, ./tests]
       language: system
       always_run: true
       pass_filenames: false

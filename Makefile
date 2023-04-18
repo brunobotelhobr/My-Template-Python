@@ -13,9 +13,7 @@ help:
 	@echo " format        reformat code"
 	@echo " lint          run the code linters"
 	@echo " upgrade       upgrade the dependencies"
-
 	@echo " bom           generate the bill of materials"
-	
 	@echo " req           export the requirements to a requirements.txt file"
 	@echo " test          run all the tests"
 	@echo " test-cov      run all the tests and show test coverage"
@@ -67,8 +65,8 @@ lint:
 
 .PHONY: bom
 bom: 
-	$(POETRY) run cyclonedx-py -p -pb --format json -F -o meta/bom/bom.json
-	$(POETRY) run cyclonedx-py -p -pb --format xml -F -o meta/bom/bom.xml
+	$(POETRY) run cyclonedx-py -p --format json -F -o meta/bom/bom.json
+	$(POETRY) run cyclonedx-py -p --format xml -F -o meta/bom/bom.xml
 
 .PHONY: req
 req: 
