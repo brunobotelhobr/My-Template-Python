@@ -1,0 +1,26 @@
+repo_name: My-Python-Template
+repo_url: https://github.com/brunobotelhobr/My-Python-Template
+site_author: Bruno Botelho <bruno.botelho.br@gmail.com>
+site_description: ''
+edit_uri: /docs
+site_name: app
+site_url: ''
+theme:
+  name: material
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  palette: 
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - attr_list
+
+extra_css:
+  - stylesheets/extra.css

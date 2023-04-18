@@ -1,4 +1,4 @@
-import toml
+import toml, yaml
 
 with open('pyproject.toml', 'r') as file:
     data = toml.load(file)
@@ -36,3 +36,21 @@ if len(new_values) > 0:
         file.seek(0)
         file.write(data_str)
         file.truncate()
+
+with open('pyproject.toml', 'r') as toml_file:
+    tom_data = toml.load(toml_file)
+    with open('mkdocs.yml', 'r+') as mkdoc_file:
+        mkdoc_data = yaml.load(mkdoc_file, Loader=yaml.FullLoader)
+        mkdoc_data['site_name'] = tom_data['tool']['poetry']['name']
+        mkdoc_data['site_description'] = tom_data['tool']['poetry']['description']
+        mkdoc_data['site_author'] = tom_data['tool']['poetry']['authors'][0]
+        mkdoc_data['site_url'] = tom_data['tool']['poetry']['homepage']
+        mkdoc_data['edit_uri'] = tom_data['tool']['poetry']['homepage'] + "/docs"
+        mkdoc_data['repo_url'] = tom_data['tool']['poetry']['repository']
+        mkdoc_data['repo_name'] = tom_data['tool']['poetry']['repository'].split("/")[-1] 
+        #save
+        mkdoc_file.seek(0)
+        yaml.dump(mkdoc_data, mkdoc_file)
+        mkdoc_file.truncate()
+        
+

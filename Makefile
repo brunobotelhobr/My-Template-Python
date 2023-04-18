@@ -23,6 +23,7 @@ help:
 	@echo " build-pypi    build the package"
 	@echo " pypi-token    set the pypi API token"
 	@echo " publish-pypi  publish the package to pypi"
+	@echo " docs-server   start the documentation server"
 	@echo " clean         remove all temporary files"
 	@echo ""
 	@echo "Check the Makefile to know exactly what each target is doing."
@@ -114,6 +115,10 @@ pypi-token:
 .PHONY: publish-pypi
 publish-pypi: 
 	$(POETRY) publish
+
+.PHONY: docs-server
+docs-server: 
+	$(POETRY) run mkdocs serve
 
 .PHONY: clean 
 clean:
