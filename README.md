@@ -59,7 +59,6 @@ docs
 sast
 sca
 contaiber
-trivy
 build publish
 install
 {
