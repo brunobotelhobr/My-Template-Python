@@ -119,11 +119,11 @@ publish-pypi:
 
 .PHONY: docs-server
 docs-server: 
-	$(POETRY) run mkdocs serve
+	$(POETRY) run mike serve
 
 .PHONY: docs-pub
 docs-pub: 
-	$(POETRY) run mkdocs gh-deploy
+	$(POETRY) run mkdocs gh-deploy --dirty -b docs
 .PHONY: clean 
 clean:
 	rm -rf .venv

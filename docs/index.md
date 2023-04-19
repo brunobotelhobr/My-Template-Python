@@ -2,6 +2,7 @@
 
 ![Project Logo](assets/logo.png){: width=160 .center}
 
+?
 
 This site contains the project documentation for the
 `calculator` project that is a toy module used in the
