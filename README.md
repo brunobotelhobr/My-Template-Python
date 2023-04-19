@@ -22,6 +22,7 @@ Suuporting:
     [x] Makefile: for run all the tools with make commands.
 
 Check our [Documentation](https://brunobotelhobr.github.io/My-Python-Template/)
+
 # How to use
 Install the Requirements
 
