@@ -70,6 +70,8 @@ ignore_missing_imports = true
 max-line-length = 79
 [tool.pylint.BASIC]
 good-names = ["a", "b", "c", "i", "k", "k"]
+[tool.pylint.'MESSAGES CONTROL']
+disable = ["C0330"]
 
 [tool.bandit]
 exclude_dirs = ["tests"]
