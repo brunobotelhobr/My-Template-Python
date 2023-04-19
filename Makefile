@@ -24,6 +24,7 @@ help:
 	@echo " pypi-token    set the pypi API token"
 	@echo " publish-pypi  publish the package to pypi"
 	@echo " docs-server   start the documentation server"
+	@echo " docs-pup       publish the documentation to github pages"
 	@echo " clean         remove all temporary files"
 	@echo ""
 	@echo "Check the Makefile to know exactly what each target is doing."
@@ -120,6 +121,9 @@ publish-pypi:
 docs-server: 
 	$(POETRY) run mkdocs serve
 
+.PHONY: docs-pup
+docs-pup: 
+	$(POETRY) run mkdocs gh-deploy
 .PHONY: clean 
 clean:
 	rm -rf .venv

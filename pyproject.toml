@@ -8,7 +8,7 @@ maintainers = ["Bruno Botelho <bruno.botelho.br@gmail.com>"]
 readme = "README.md"
 packages = [{include = "app", from = "src"}]
 repository = "https://github.com/brunobotelhobr/My-Python-Template"
-homepage = ""
+homepage = "https://brunobotelhobr.github.io/My-Python-Template/"
 keywords = ["python"]
 
 
@@ -29,6 +29,7 @@ pytest-cov = "^4.0.0"
 pre-commit = "^3.2.2"
 bandit = {version = "^1.7.5", extras = ["toml"]}
 safety = "^2.3.5"
+mike = "^1.1.2"
 
 
 [tool.poetry.group.doc.dependencies]
@@ -36,6 +37,7 @@ mkdocs-material = "^9.1.6"
 mkdocs = "^1.4.2"
 mkdocs-material-extensions = "^1.1.1"
 pymdown-extensions = "^9.11"
+mkdocstrings = {version = "^0.21.2", extras = ["python"]}
 
 [build-system]
 requires = ["poetry-core"]
@@ -66,6 +68,8 @@ ignore_missing_imports = true
 
 [tool.pylint]
 max-line-length = 79
+[tool.pylint.BASIC]
+good-names = ["a", "b", "c", "i", "k", "k"]
 
 [tool.bandit]
 exclude_dirs = ["tests"]

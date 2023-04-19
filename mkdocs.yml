@@ -19,8 +19,25 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
 
+watch:
+  - src
+
 markdown_extensions:
   - attr_list
 
+plugins:
+  - mkdocstrings:
+
 extra_css:
   - stylesheets/extra.css
+
+nav:
+  - Docs: index.md
+  - tutorials.md
+  - How-To Guides: how-to-guides.md
+  - references.md
+  - explanation.md
+
+extra:
+  version:
+    provider: mike
