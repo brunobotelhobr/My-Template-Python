@@ -135,7 +135,7 @@ docs-version-add:
 	unset MVERSION
 
 .PHONY: docs-version
-docs-version-delete
+docs-version-delete:
 	echo "Current Versions:"
 	$(POETRY) run mike list
 	echo "Type the new version:"
