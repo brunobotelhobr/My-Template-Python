@@ -25,13 +25,11 @@ autoflake = "^2.1.0"
 pytest = "^7.3.1"
 cyclonedx-bom = "^3.11.0"
 pytest-cov = "^4.0.0"
-pre-commit = "^3.2.2"
 bandit = {version = "^1.7.5", extras = ["toml"]}
-safety = "^2.3.5"
 flake8-bugbear = "^23.3.23"
 flake8-docstrings = "^1.7.0"
 flake8-tidy-imports = "^4.8.0"
-
+taskipy = "^1.10.4"
 
 [tool.poetry.group.doc.dependencies]
 mkdocs-material = "^9.1.6"
@@ -78,3 +76,32 @@ good-names = ["a", "b", "c", "i", "k", "k"]
 exclude_dirs = ["tests"]
 tests = []
 skips = []
+
+[tool.taskipy.settings]
+use_vars = true
+
+[tool.taskipy.variables]
+src_dir = "src"
+docs_version = "0.1.0"
+docs_branch = "documentation"
+package_dir = { var = "{src_dir}/app", recursive = true }
+
+[tool.taskipy.tasks]
+info = { cmd = "poetry env info && poetry check && poetry show", help = "Show project info" }
+meta = { cmd = "python python scripts/update-project-properties.py", help = "Update project properties" }
+upgrade = { cmd = "poetry self update && poetry update && poetry export", help = "Upgrade all dependencies" }
+sec = { cmd = "trivy fs --exit-code 1 --scanners vuln,config,secret . && bandit -c pyproject.toml -r src", help = "Run all Security Checks" }
+format = { cmd = "isort --settings-path pyproject.toml src && isort --settings-path pyproject.toml tests && black --config ./pyproject.toml src && black --config ./pyproject.toml tests && autoflake --recursive src && autoflake --recursive tests", help = "Run all Formaters" }
+lint = { cmd = "flake8 --config pyproject.toml src && flake8 --config pyproject.toml tests && mypy --config-file pyproject.toml src && mypy --config-file pyproject.toml tests && pylint --rcfile pyproject.toml src && pylint --rcfile pyproject.toml tests", help = "Run all Linters" }
+bom = { cmd = "cyclonedx-py -p --format xml -F -o meta/bom/bom.xml && cyclonedx-py -p --format json -F -o meta/bom/bom.json", help = "Generate BOM" }
+req = { cmd = "poetry export --format requirements.txt > meta/requirements/requirements.txt && echo '-r requirements.txt' > meta/requirements/requirements-dev.txt && poetry export --with dev --format requirements.txt >> meta/requirements/requirements-dev.txt", help = "Generate Requirements" }
+tests = { cmd = "pytest --cov={package_dir} --cov-report term", help = "Run all tests" }
+pypi-build = { cmd = "poetry build", help = "Build package for PyPI" }
+pypi-auth = { cmd = "echo 'Type PyPI API token:' && read -s PYPI_TOKEN && poetry config pypi-token.pypi $PYPI_TOKEN && unset PYPI_TOKEN", help = "Authenticate to PyPI"}
+pypi-publish = { cmd = "poetry publish", help = "Publish package to PyPI" }
+docs = { cmd = "mike serve -b {docs_branch}", help = "Run MkDocs server" }
+docs-list = { cmd = "mike list -b {docs_branch}", help = "List MkDocs versions" }
+docs-build = { cmd = "mike deploy -b {docs_branch} {docs_version} latest", help = "Add actual documentation (version) to the doc branch." }
+docs-delete = { cmd = "mike delete -b {docs_branch} {docs_version}", help = "Delete acutal documentation (version) from the doc branch." }
+docs-pub = { cmd = "git push --force-with-lease {docs_branch} {docs_branch}", help = "Publish documentation to the doc branch on GitHub." }
+clean = { cmd = "rm -rf .venv && rm -rf .pytest_cache && rm -rf .coverage && rm -rf dist && rm -rf site &&find . -type d -name __pycache__ > /dev/null", help = "Clean all generated files" }
