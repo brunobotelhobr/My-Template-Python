@@ -121,15 +121,40 @@ publish-pypi:
 docs-server: 
 	$(POETRY) run mike serve
 
+.PHONY: docs-list
+docs-list: 
+	$(POETRY) run mike list
+
+.PHONY: docs-version
+docs-version-add: 
+	echo "Current Versions:"
+	$(POETRY) run mike list
+	echo "Type the new version:"
+	read MVERSION
+	mike deploy -u $(MVERSION) latest
+	unset MVERSION
+
+.PHONY: docs-version
+docs-version-delete
+	echo "Current Versions:"
+	$(POETRY) run mike list
+	echo "Type the new version:"
+	read MVERSION
+	mike delete $(MVERSION)
+	unset MVERSION
 .PHONY: docs-pub
 docs-pub: 
 	$(POETRY) run mkdocs gh-deploy --dirty -b docs
+
 .PHONY: clean 
 clean:
 	rm -rf .venv
 	rm -rf .pytest_cache
 	rm -rf .mypy_cache
+	rm -rf .mypy_cache
+	rm -rf .pytest_cache
 	rm -rf .coverage
 	rm -rf dist
+	rm -rf site
 	find . -type d -name __pycache__ -exec rm -r {} +
 

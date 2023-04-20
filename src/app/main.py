@@ -1,9 +1,9 @@
-"""Main module"""
+"""Main module."""
 from app import calc
 
 
 def main():
-    """Entry point for main"""
+    """Entry point for main."""
     print("Hello World!")
     print(calc.add(1, 2))
     return "Hello World!"

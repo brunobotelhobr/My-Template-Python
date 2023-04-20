@@ -26,11 +26,8 @@ watch:
 markdown_extensions:
   - attr_list
 
-plugins:
-  - mkdocstrings:
-
 extra_css:
-  - stylesheets/extra.css
+  - css/extra.css
 
 nav:
   - Home: index.md
@@ -43,3 +40,8 @@ nav:
 extra:
   version:
     provider: mike
+
+plugins:
+  - mkdocstrings:
+  - mike:
+      version_selector: true

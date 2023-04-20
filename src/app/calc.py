@@ -1,4 +1,5 @@
-"""Provides several sample math calc.
+"""
+Do math calculations.
 
 This script can be imported as a module and allows the user
 to make mathematical calc.
@@ -27,7 +28,8 @@ from typing import Union
 
 
 def add(a: Union[float, int], b: Union[float, int]) -> float:
-    """Calculates the sum of two numbers.
+    """
+    Do addition of two numbers.
 
     Examples:
         >>> add(4.0, 2.0)
@@ -42,14 +44,14 @@ def add(a: Union[float, int], b: Union[float, int]) -> float:
     Returns:
         sum of the first and the second number
     """
-
     return float(a + b)
 
 
 def subtract(
     a: Union[float, int], b: Union[float, int]
 ) -> float:  # pylint: disable=invalid-name
-    """Calculates the difference of two numbers.
+    """
+    Do subtraction of two numbers.
 
     Examples:
         >>> subtract(4.0, 2.0)
@@ -64,14 +66,14 @@ def subtract(
     Returns:
         the difference between the minuend minus the subtrahend
     """
-
     return float(a - b)
 
 
 def multiply(
     a: Union[float, int], b: Union[float, int]
 ) -> float:  # pylint: disable=invalid-name
-    """Calculates the product of two numbers.
+    """
+    Do multiplication of two numbers.
 
     Examples:
         >>> multiply(4.0, 2.0)
@@ -86,14 +88,14 @@ def multiply(
     Returns:
         the product of the two numbers
     """
-
     return float(a * b)
 
 
 def divide(
     a: Union[float, int], b: Union[float, int]
 ) -> float:  # pylint: disable=invalid-name
-    """Calculates the quotient of two numbers.
+    """
+    Do division of two numbers.
 
     Examples:
         >>> divide(4.0, 2.0)
@@ -115,7 +117,6 @@ def divide(
     Returns:
         the quotient
     """
-
     if b == 0:
         raise ZeroDivisionError("division by zero")
     return float(a / b)
@@ -124,7 +125,8 @@ def divide(
 def power(
     base: Union[float, int], exponent: Union[float, int] = 2.0
 ) -> float:  # pylint: disable=invalid-name
-    """Calculates base to the power of exponent.
+    """
+    Do exponentiation of a number.
 
     Examples:
         >>> power(4.0, 2.0)
@@ -141,12 +143,12 @@ def power(
     Returns:
         the result of taking the base to the exponent
     """
-
     return float(base**exponent)
 
 
 def sqrt(a: Union[float, int]) -> float:  # pylint: disable=invalid-name
-    """Calculates the square root of a.
+    """
+    Do square root of a number.
 
     Examples:
         >>> sqrt(4.0)
@@ -163,7 +165,6 @@ def sqrt(a: Union[float, int]) -> float:  # pylint: disable=invalid-name
     Returns:
         the square root of `a`
     """
-
     if a < 0:
         raise ValueError("math domain error")
     return float(a ** (1 / 2))

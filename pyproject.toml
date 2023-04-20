@@ -11,7 +11,6 @@ repository = "https://github.com/brunobotelhobr/My-Python-Template"
 homepage = "https://brunobotelhobr.github.io/My-Python-Template/"
 keywords = ["python"]
 
-
 [tool.poetry.dependencies]
 python = "^3.11"
 
@@ -29,7 +28,9 @@ pytest-cov = "^4.0.0"
 pre-commit = "^3.2.2"
 bandit = {version = "^1.7.5", extras = ["toml"]}
 safety = "^2.3.5"
-mike = "^1.1.2"
+flake8-bugbear = "^23.3.23"
+flake8-docstrings = "^1.7.0"
+flake8-tidy-imports = "^4.8.0"
 
 
 [tool.poetry.group.doc.dependencies]
@@ -38,6 +39,7 @@ mkdocs = "^1.4.2"
 mkdocs-material-extensions = "^1.1.1"
 pymdown-extensions = "^9.11"
 mkdocstrings = {version = "^0.21.2", extras = ["python"]}
+mike = "^1.1.2"
 
 [build-system]
 requires = ["poetry-core"]
@@ -71,7 +73,6 @@ max-line-length = 79
 [tool.pylint.BASIC]
 good-names = ["a", "b", "c", "i", "k", "k"]
 [tool.pylint.'MESSAGES CONTROL']
-disable = ["C0330"]
 
 [tool.bandit]
 exclude_dirs = ["tests"]
