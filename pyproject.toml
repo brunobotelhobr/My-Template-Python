@@ -90,7 +90,7 @@ package_dir = { var = "{src_dir}/app", recursive = true }
 info = { cmd = "poetry env info && poetry check && poetry show", help = "Show project info" }
 meta = { cmd = "python python scripts/update-project-properties.py", help = "Update project properties" }
 upgrade = { cmd = "poetry self update && poetry update && poetry export", help = "Upgrade all dependencies" }
-sec = { cmd = "trivy fs --exit-code 1 --scanners vuln,config,secret . && bandit -c pyproject.toml -r src", help = "Run all Security Checks" }
+sec = { cmd = "trivy fs --exit-code 1 --scanners vuln,config,secret . && bandit -c pyproject.toml -r src && horusec start ./src", help = "Run all Security Checks" }
 format = { cmd = "isort --settings-path pyproject.toml src && isort --settings-path pyproject.toml tests && black --config ./pyproject.toml src && black --config ./pyproject.toml tests && autoflake --recursive src && autoflake --recursive tests", help = "Run all Formaters" }
 lint = { cmd = "flake8 --config pyproject.toml src && flake8 --config pyproject.toml tests && mypy --config-file pyproject.toml src && mypy --config-file pyproject.toml tests && pylint --rcfile pyproject.toml src && pylint --rcfile pyproject.toml tests", help = "Run all Linters" }
 bom = { cmd = "cyclonedx-py -p --format xml -F -o meta/bom/bom.xml && cyclonedx-py -p --format json -F -o meta/bom/bom.json", help = "Generate BOM" }
