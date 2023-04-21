@@ -1,4 +1,5 @@
-import toml, yaml
+import toml
+import yaml
 
 with open('pyproject.toml', 'r') as file:
     data = toml.load(file)
@@ -22,24 +23,36 @@ print("Type new values for the project properties or press enter to keet the act
 
 # Read new values
 new_values = []
+old_name = ""
+new_name = ""
+update = False
+new_values = []
 for key in data['tool']['poetry']:
     if key != "group":
         value = input(f"   {key} :")
         if value != "":
             new_values.append(f"{key} = \"{value}\"")
 
-# Update pyproject.toml
+
 if len(new_values) > 0:
+    """Update pyproject.toml"""
     with open('pyproject.toml', 'r+') as file:
         data_str = file.read()
         for new_value in new_values:
-            data_str = data_str.replace(f"{new_value.split('=')[0].strip()} = \"{data['tool']['poetry'][new_value.split('=')[0].strip()]}\"", new_value)
+            data_str = data_str.replace(
+                f"{new_value.split('=')[0].strip()} = \"{data['tool']['poetry'][new_value.split('=')[0].strip()]}\"", new_value)
+            if new_value.split('=')[0].strip() == "name":
+                old_name = data['tool']['poetry'][new_value.split('=')[
+                    0].strip()]
+                new_name = new_value.split('=')[1].strip().replace("\"", "")
+                update = True
         file.seek(0)
         file.write(data_str)
         file.truncate()
 
-# Update MKDocs
+
 with open('pyproject.toml', 'r') as toml_file:
+    """Update mkdocs.yml"""
     tom_data = toml.load(toml_file)
     with open('mkdocs.yml', 'r+') as mkdoc_file:
         mkdoc_data = yaml.load(mkdoc_file, Loader=yaml.FullLoader)
@@ -49,10 +62,20 @@ with open('pyproject.toml', 'r') as toml_file:
         mkdoc_data['site_url'] = tom_data['tool']['poetry']['homepage']
         mkdoc_data['edit_uri'] = tom_data['tool']['poetry']['homepage'] + "/docs"
         mkdoc_data['repo_url'] = tom_data['tool']['poetry']['repository']
-        mkdoc_data['repo_name'] = tom_data['tool']['poetry']['repository'].split("/")[-1] 
-        #save
+        mkdoc_data['repo_name'] = tom_data['tool']['poetry']['repository'].split(
+            "/")[-1]
+        # save
         mkdoc_file.seek(0)
         yaml.dump(mkdoc_data, mkdoc_file)
         mkdoc_file.truncate()
-        
 
+with open('pyproject.toml', 'r+') as f:
+    """Fix packages if the name changes"""
+    lines = f.readlines()
+    if update is True:
+        for i, line in enumerate(lines):
+            if line.startswith('packages = [{include = "'):
+                lines[i] = line.replace(old_name, new_name)
+    f.seek(0)
+    f.writelines(lines)
+    f.truncate()

@@ -1,47 +1,41 @@
+edit_uri: https://brunobotelhobr.github.io/My-Python-Template//docs
+extra:
+  version:
+    provider: mike
+extra_css:
+- css/extra.css
+markdown_extensions:
+- attr_list
+nav:
+- Home: index.md
+- Install: install.md
+- Manual: manual.md
+- FAQ: faq.md
+- Contribute: how-to-guides.md
+- Code: code.md
+plugins:
+- mkdocstrings: null
+- mike:
+    version_selector: true
 repo_name: My-Python-Template
 repo_url: https://github.com/brunobotelhobr/My-Python-Template
 site_author: Bruno Botelho <bruno.botelho.br@gmail.com>
 site_description: ''
-edit_uri: /docs
 site_name: app
-site_url: ''
+site_url: https://brunobotelhobr.github.io/My-Python-Template/
 theme:
-  name: material
-  logo: assets/logo.png
-  favicon: assets/logo.png
   custom_dir: docs/overwrites
-  palette: 
-    - scheme: default
-      toggle:
-        icon: material/brightness-7 
-        name: Switch to dark mode
-    - scheme: slate
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
-
+  favicon: assets/logo.png
+  logo: assets/logo.png
+  name: material
+  palette:
+  - scheme: default
+    toggle:
+      icon: material/brightness-7
+      name: Switch to dark mode
+  - scheme: slate
+    toggle:
+      icon: material/brightness-4
+      name: Switch to light mode
 watch:
-  - src
-
-markdown_extensions:
-  - attr_list
-
-extra_css:
-  - css/extra.css
-
-nav:
-  - Home: index.md
-  - Install: install.md
-  - Manual: manual.md
-  - FAQ: faq.md
-  - Contribute: how-to-guides.md
-  - Code: code.md
-
-extra:
-  version:
-    provider: mike
-
-plugins:
-  - mkdocstrings:
-  - mike:
-      version_selector: true
+- src
