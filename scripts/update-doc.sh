@@ -1,5 +1,6 @@
 #/bin/bash 
 echo "Updating Documentation, point github sites to the correct branch"
+echo "---------------------------------------------------------------"
 GIT_CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD) > /dev/null
 git checkout $1 > /dev/null
 git add * > /dev/null
