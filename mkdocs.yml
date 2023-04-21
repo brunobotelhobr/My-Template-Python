@@ -45,3 +45,7 @@ plugins:
   - mkdocstrings:
   - mike:
       version_selector: true
+      alias_type: symlink
+      canonical_version: latest
+      css_dir: css
+      javascript_dir: js
