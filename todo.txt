@@ -1,3 +1,0 @@
-
-docs - Versioning
-sbom > licences and groups

@@ -1,6 +1,6 @@
 """Entry point for project_name."""
 
-from .main import main  # pragma: no cover
+from .calc import add
 
 if __name__ == "__main__":  # pragma: no cover
-    main()
+    add(1, 2)

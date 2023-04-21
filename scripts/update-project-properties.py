@@ -20,7 +20,7 @@ print(f"   dependencies: {data['tool']['poetry']['dependencies']}")
 print("")
 print("Type new values for the project properties or press enter to keet the actual value:")
 
-
+# Read new values
 new_values = []
 for key in data['tool']['poetry']:
     if key != "group":
@@ -28,6 +28,7 @@ for key in data['tool']['poetry']:
         if value != "":
             new_values.append(f"{key} = \"{value}\"")
 
+# Update pyproject.toml
 if len(new_values) > 0:
     with open('pyproject.toml', 'r+') as file:
         data_str = file.read()
@@ -37,6 +38,7 @@ if len(new_values) > 0:
         file.write(data_str)
         file.truncate()
 
+# Update MKDocs
 with open('pyproject.toml', 'r') as toml_file:
     tom_data = toml.load(toml_file)
     with open('mkdocs.yml', 'r+') as mkdoc_file:
