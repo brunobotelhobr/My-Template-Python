@@ -80,6 +80,9 @@ skips = []
 [tool.taskipy.settings]
 use_vars = true
 
+[tool.pytest.ini_options]
+addopts = "--cov --cov-report term-missing"
+
 [tool.taskipy.variables]
 src_dir = "src"
 docs_branch = "documentation"
@@ -97,7 +100,7 @@ format = { cmd = "isort --settings-path pyproject.toml src && isort --settings-p
 lint = { cmd = "flake8 --config pyproject.toml src && flake8 --config pyproject.toml tests && mypy --config-file pyproject.toml src && mypy --config-file pyproject.toml tests && pylint --rcfile pyproject.toml src && pylint --rcfile pyproject.toml tests", help = "Run all linters" }
 bom = { cmd = "cyclonedx-py -p --format xml -F -o meta/bom/bom.xml && cyclonedx-py -p --format json -F -o meta/bom/bom.json", help = "Generate BOM" }
 req = { cmd = "poetry export --format requirements.txt > meta/requirements/requirements.txt && echo '-r requirements.txt' > meta/requirements/requirements-dev.txt && poetry export --with dev --format requirements.txt >> meta/requirements/requirements-dev.txt", help = "Generate requirements.txt" }
-tests = { cmd = "pytest --cov={package_dir} --cov-report term", help = "Run all tests" }
+tests = { cmd = "pytest --cov={package_dir} --cov-report term-missing", help = "Run all tests" }
 pypi-build = { cmd = "poetry build", help = "Build package for PyPI" }
 pypi-auth = { cmd = "echo 'Type PyPI API token:' && read -s PYPI_TOKEN && poetry config pypi-token.pypi $PYPI_TOKEN && unset PYPI_TOKEN", help = "Authenticate to PyPI"}
 pypi-publish = { cmd = "poetry publish", help = "Publish package to PyPI" }
