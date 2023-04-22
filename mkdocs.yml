@@ -6,6 +6,11 @@ extra_css:
 - css/extra.css
 markdown_extensions:
 - attr_list
+- pymdownx.superfences:
+    custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_code_format
 nav:
 - Home: index.md
 - Install: install.md
@@ -39,3 +44,6 @@ theme:
       name: Switch to light mode
 watch:
 - src
+
+
+
