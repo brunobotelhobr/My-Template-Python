@@ -75,4 +75,5 @@ jobs:
         pip install poetry
         poetry config virtualenvs.create false
         poetry install
+        poetry run task security
         
