@@ -1,9 +1,14 @@
 # My-Python-Template
 
 ![GitHub Action CI](https://github.com/brunobotelhobr/My-Template-Python/actions/workflows/ci.yml/badge.svg)
+![GitHub Action CodeQL](https://github.com/brunobotelhobr/My-Template-Python/actions/workflows/codeql.yml/badge.svg)
 [![codecov](https://codecov.io/gh/brunobotelhobr/My-Template-Python/branch/main/graph/badge.svg?token=EPMON2XJW2)](https://codecov.io/gh/brunobotelhobr/My-Template-Python)
 
-task
+This is a template repository for Python projects. 
+It uses Poetry for dependency management and includes pre-configured tools such as Black, Flake8, mypy, Pylint, pytest, and others, for formatting, linting, testing, and documentation management. 
+The project also includes security tools like Trivy and Bandit. 
+The pyproject.toml file contains various configurations like project metadata, dependencies, build system, and commands for release and documentation management.
+
 To have more details, check the [Documentation](https://brunobotelhobr.github.io/My-Template-Python/)
 
 ## Features
