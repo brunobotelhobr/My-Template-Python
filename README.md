@@ -41,9 +41,12 @@ To have more details, check the [Documentation](https://brunobotelhobr.github.io
 - Documentation
     - ✅ [MkDocs](https://www.mkdocs.org/)
     - ✅ [MkDocs Material Theme](https://squidfunk.github.io/mkdocs-material/)
-    - ✅ [MkDocs Versioning] with mike](https://github.com/jimporter/mike)
+    - ✅ [MkDocs Versioning with mike](https://github.com/jimporter/mike)
     - ✅ Scripts to generate SBOM (Software Bill of Materials)
     - ✅ Scripts to generate requirements.txt
+- CI/CD
+    - ✅ GitHub Actions to do CI/CD
+
 
 ## Tasks
 This project uses [Taskipy](https://github.com/taskipy/taskipy) to automate common development tasks.
@@ -176,8 +179,8 @@ git push origin <branch-name>
 We invite you to contribute to this repository and help us make it even better. 
 Whether it's bug fixes, new features, or documentation improvements, we welcome all contributions. 
 Please read our documentation for guidelines on how to contribute. 
-
- [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/brunobotelhobr)
 Happy coding!
 
 check the [Documentation](https://brunobotelhobr.github.io/My-Template-Python/) for more details.
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/brunobotelhobr)

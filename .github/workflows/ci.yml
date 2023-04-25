@@ -2,50 +2,6 @@ name: CI
 on: [push]
 jobs:
 
-  Test-Tasks-Integrity-Linux:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-    env:
-      OS: ${{ matrix.os }}
-      PYTHON: '3.11'
-    steps:
-    - uses: actions/checkout@master
-    - name: Setup Python
-      uses: actions/setup-python@master
-      with:
-        python-version: 3.11
-    - name: Install Requirements
-      run: |
-        curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v0.40.0
-        curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
-        pip install poetry
-        poetry config virtualenvs.create false
-        poetry install
-    - name: Test task info
-      run: task info
-    - name: Test task upgrade
-      run: task upgrade
-    - name: Test task sec
-      run: task sec
-    - name: Test task format
-      run: task format
-    - name: Test task lint
-      run: task lint
-    - name: Test task bom
-      run: task bom
-    - name: Test task req
-      run: task req
-    - name: Test task test
-      run: task test
-    - name: Test task pypi-build
-      run: task pypi-build
-    - name: Test task docker-build
-      run: docker build -t test_img:ci-test .
-    - name: Test task clear
-      run: task clear
-
   Lint:
     runs-on: ${{ matrix.os }}
     strategy:
