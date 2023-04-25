@@ -10,6 +10,7 @@ RUN pip install --upgrade poetry
 WORKDIR /code
 COPY src src
 COPY pyproject.toml /code/pyproject.toml
+COPY README.md /code/README.md
 
 # Install the packages
 # Disable virtualenvs creation
