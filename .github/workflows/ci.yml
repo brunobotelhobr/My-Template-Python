@@ -18,6 +18,8 @@ jobs:
         python-version: 3.11
     - name: Install Requirements
       run: |
+        curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v0.40.0
+        curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
         pip install poetry
         poetry config virtualenvs.create false
         poetry install
