@@ -1,7 +1,9 @@
-FROM python:3.11-slim-buster
+FROM python:3.11-alpine
 
+# Update the system
+RUN apk update && apk upgrade
 # Create User
-RUN useradd -m -d /code -s /bin/bash app 
+RUN adduser -D -h /code -s /bin/bash app 
 
 # Install dependencies
 RUN pip install --upgrade pip
