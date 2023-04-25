@@ -1,6 +1,10 @@
 # Welcome to Project Documentation
 
 ![Project Logo](assets/logo.png){: width=160 .center}
+# My-Python-Template
+
+![GitHub Action CI](https://github.com/brunobotelhobr/My-Template-Python/actions/workflows/ci.yml/badge.svg)
+[![codecov](https://codecov.io/gh/brunobotelhobr/My-Template-Python/branch/main/graph/badge.svg?token=EPMON2XJW2)](https://codecov.io/gh/brunobotelhobr/My-Template-Python)
 
 This is a template repository for Python projects. 
 It uses Poetry for dependency management and includes pre-configured tools such as Black, Flake8, mypy, Pylint, pytest, and others, for formatting, linting, testing, and documentation management. 
@@ -40,9 +44,12 @@ To have more details, check the [Documentation](https://brunobotelhobr.github.io
 - Documentation
     - ✅ [MkDocs](https://www.mkdocs.org/)
     - ✅ [MkDocs Material Theme](https://squidfunk.github.io/mkdocs-material/)
-    - ✅ [MkDocs Versioning] with mike](https://github.com/jimporter/mike)
+    - ✅ [MkDocs Versioning with mike](https://github.com/jimporter/mike)
     - ✅ Scripts to generate SBOM (Software Bill of Materials)
     - ✅ Scripts to generate requirements.txt
+- CI/CD
+    - ✅ GitHub Actions to do CI/CD
+
 
 ## Tasks
 This project uses [Taskipy](https://github.com/taskipy/taskipy) to automate common development tasks.
@@ -82,7 +89,7 @@ clear          Clean all generated files
 ````
 
 ## Project Structure
-````text
+````
 .
 ├── Dockerfile
 ├── README.md
@@ -110,7 +117,7 @@ clear          Clean all generated files
 ├── poetry.lock
 ├── pyproject.toml
 ├── scripts
-│   ├── update-doc.sh
+│   ├── update-doc.py
 │   └── update-project-properties.py
 ├── src
 │   └── app
@@ -125,17 +132,104 @@ clear          Clean all generated files
     │   └── __init__.py
     └── unity
         ├── __init__.py
-        ├── __pycache__
-        │   ├── calc_test.cpython-311-pytest-7.3.1.pyc
-        │   └── main_test.cpython-311-pytest-7.3.1.pyc
         ├── calc_test.py
-        └── main_test.py
 ````
+## Requirements
+You must install manually the following tools:
+- Install [Python](https://www.python.org/downloads/)
+- Install [Poetry](https://python-poetry.org/docs/#installation)
+- Install [Trivy](https://aquasecurity.github.io/trivy/v0.40/getting-started/installation/)
+- Install [Horusec](https://horusec.io/docs/quick-start/installation/)
+- Install [Docker](https://docs.docker.com/get-docker/)
+
+Be sure you have installed all the requirements and that you on the desired python Version, you can check it with: 
+    `python --version`
+
+## Setup
+```shell
+# Clone the repository
+git clone https://github.com/brunobotelhobr/My-Template=Python.git
+
+# Check the python version, you must use the version that the project will use.
+python -V
+
+# Install the dependencies
+pip install poetry
+poetry shell
+poetry install
+
+# Check the taskipi commands:
+task --list
+
+# Update projetct metadata
+task meta
+```
+
+## How Start?
+
+### 1. Fork the project
+```shell
+# Clone the repository
+git clone
+
+# Check the python version, you must use the version that the project will use.
+python -V
+
+# Install the dependencies
+pip install poetry
+poetry shell
+poetry install
+
+# Check the taskipi commands:
+task --list
+```
+
+### 2. Create a new branch with your changes
+```shell
+# Create a new branch
+git checkout -b <branch-name>
+```
+
+### 3. Make the changes and commit
+```shell
+# Check for lint errors
+task format
+task lint
+
+# Check for security errors
+task sec
+
+# Update the meta
+task meta
+task bom
+task req
+
+# Add the changes
+git add .
+```
+
+### 4. Open a Pull Request
+```shell
+git commit -m "feat: add a new feature"
+git push origin <branch-name>
+```
+
+## Hints
+- How add a Dev Package
+   -  `poetry add --dev <package-name>`
+- How add a Prod Package
+    - `poetry add <package-name>`
+- How add a Package with extras
+    - `poetry add <package-name> -E <extras>`
+- How remove a Package
+    - `poetry remove <package-name>`
 
 ## Call for Contributors
 We invite you to contribute to this repository and help us make it even better. 
 Whether it's bug fixes, new features, or documentation improvements, we welcome all contributions. 
 Please read our documentation for guidelines on how to contribute. 
+
+Check [How to Contribute](how-to-guides.md)
 Happy coding!
 
-Start by the [Install](install.md) page, than go to the [How to Contribut](how-to-guides.md) to learn how to contribute to this project.
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/brunobotelhobr)
