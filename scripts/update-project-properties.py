@@ -1,8 +1,8 @@
-"""Update project properties in pyproject.toml and mkdocs.yml"""
+"""Do project properties update."""
 import toml
 import yaml
 
-with open('pyproject.toml', 'r') as file:
+with open('pyproject.toml', 'r') as file:  # pylint: disable=w1514
     data = toml.load(file)
 
 
@@ -18,17 +18,17 @@ print(f"   packages: {data['tool']['poetry']['packages']}")
 print(f"   repository: {data['tool']['poetry']['repository']}")
 print(f"   homepage: {data['tool']['poetry']['homepage']}")
 print(f"   keywords: {data['tool']['poetry']['keywords']}")
-print(f"   docker-context: {data['tool']['taskipy']['variables']['docker_context']}")
-print("Type new values for the project properties or press enter to keet the actual value:")
+print(f"   docker-context: {data['tool']['taskipy']['variables']['docker_context']}")  # pylint: disable=line-too-long
+print("Type new values for the project properties or press enter to keet the actual value:")  # pylint: disable=line-too-long
 
 # Read new values
 new_values = []
-old_name = ""
-new_name = ""
-old_version = ""
-new_version = ""
-new_docker_context = ""
-update = False
+old_name = ""  # pylint: disable=invalid-name
+new_name = ""  # pylint: disable=invalid-name
+old_version = ""  # pylint: disable=invalid-name
+new_version = ""  # pylint: disable=invalid-name
+new_docker_context = ""  # pylint: disable=invalid-name
+update = False  # pylint: disable=invalid-name
 
 new_values = []
 for key in data['tool']['poetry']:
@@ -36,18 +36,17 @@ for key in data['tool']['poetry']:
         value = input(f"   {key} :")
         if value != "":
             new_values.append(f"{key} = \"{value}\"")
-value = input(f"   docker-context :")
+value = input("   docker-context :")
 if value != "":
     new_docker_context = value
-    update = True
+    update = True  # pylint: disable=invalid-name
 
 if len(new_values) > 0:
-    """Update pyproject.toml"""
-    with open('pyproject.toml', 'r+') as file:
+    with open('pyproject.toml', 'r+') as file:  # pylint: disable=w1514
         data_str = file.read()
         for new_value in new_values:
             data_str = data_str.replace(
-                f"{new_value.split('=')[0].strip()} = \"{data['tool']['poetry'][new_value.split('=')[0].strip()]}\"", new_value)
+                f"{new_value.split('=')[0].strip()} = \"{data['tool']['poetry'][new_value.split('=')[0].strip()]}\"", new_value)   # pylint: disable=line-too-long
             if new_value.split('=')[0].strip() == "name":
                 old_name = data['tool']['poetry'][new_value.split('=')[
                     0].strip()]
@@ -63,26 +62,24 @@ if len(new_values) > 0:
         file.truncate()
 
 
-with open('pyproject.toml', 'r') as toml_file:
-    """Update mkdocs.yml"""
+with open('pyproject.toml', 'r') as toml_file:  # pylint: disable=w1514
     tom_data = toml.load(toml_file)
-    with open('mkdocs.yml', 'r+') as mkdoc_file:
+    with open('mkdocs.yml', 'r+') as mkdoc_file:  # pylint: disable=w1514
         mkdoc_data = yaml.load(mkdoc_file, Loader=yaml.FullLoader)
         mkdoc_data['site_name'] = tom_data['tool']['poetry']['name']
-        mkdoc_data['site_description'] = tom_data['tool']['poetry']['description']
+        mkdoc_data['site_description'] = tom_data['tool']['poetry']['description']  # pylint: disable=line-too-long
         mkdoc_data['site_author'] = tom_data['tool']['poetry']['authors'][0]
         mkdoc_data['site_url'] = tom_data['tool']['poetry']['homepage']
-        mkdoc_data['edit_uri'] = tom_data['tool']['poetry']['homepage'] + "/docs"
+        mkdoc_data['edit_uri'] = tom_data['tool']['poetry']['homepage'] + "/docs"   # pylint: disable=line-too-long
         mkdoc_data['repo_url'] = tom_data['tool']['poetry']['repository']
-        mkdoc_data['repo_name'] = tom_data['tool']['poetry']['repository'].split(
+        mkdoc_data['repo_name'] = tom_data['tool']['poetry']['repository'].split(   # pylint: disable=line-too-long
             "/")[-1]
         # save
         mkdoc_file.seek(0)
         yaml.dump(mkdoc_data, mkdoc_file)
         mkdoc_file.truncate()
 
-with open('pyproject.toml', 'r+') as f:
-    """Fix packages if the name changes"""
+with open('pyproject.toml', 'r+') as f:  # pylint: disable=w1514
     lines = f.readlines()
     if update is True:
         for i, line in enumerate(lines):
@@ -96,9 +93,9 @@ with open('pyproject.toml', 'r+') as f:
                 if (old_version is not None) and (new_version is not None):
                     lines[i] = line.replace(old_version, new_version)
             if line.startswith('docker_context = "'):
-                if (new_docker_context is not None):
+                if new_docker_context is not None:
                     lines[i] = line.replace(
-                        f"docker_context = \"{data['tool']['taskipy']['variables']['docker_context']}\"", f"docker_context = \"{new_docker_context}\"")
+                        f"docker_context = \"{data['tool']['taskipy']['variables']['docker_context']}\"", f"docker_context = \"{new_docker_context}\"")  # pylint: disable=line-too-long
     f.seek(0)
     f.writelines(lines)
     f.truncate()
