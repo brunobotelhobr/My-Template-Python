@@ -1,5 +1,8 @@
 FROM python:3.11-slim-buster
 
+# Create User
+RUN useradd -m -d /code -s /bin/bash app 
+
 # Install dependencies
 RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
@@ -17,10 +20,10 @@ COPY README.md /code/README.md
 RUN poetry config virtualenvs.create false
 RUN poetry install --without dev,docs
 
-# Add App User
-RUN useradd -m -d /code -s /bin/bash app \
-    && chown -R app:app /code/*
+# Adjust Permissions
+RUN chown -R app:app /code/*
 
+#Enable App User
 USER app
 
 HEALTHCHECK --interval=30s --timeout=3s \
