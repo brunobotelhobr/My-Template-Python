@@ -11,9 +11,7 @@ args = parser.parse_args()
 
 branch = args.branch
 
-print(os.system("git status"))
-os.system("git checkout master")
-print("Current Branch: " + str(os.system("git rev-parse --abbrev-ref HEAD) > /dev/null")))
+
 CURRENT_BRANCH = str(os.system("git rev-parse --abbrev-ref HEAD) > /dev/null"))
 os.system("git checkout " + branch + " > /dev/null")
 os.system("git add * > /dev/null")
