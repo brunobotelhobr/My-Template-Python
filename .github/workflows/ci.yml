@@ -1,6 +1,27 @@
 name: CI
 on: [push]
 jobs:
+  Lint:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    env:
+      OS: ${{ matrix.os }}
+      PYTHON: '3.11'
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup Python
+      uses: actions/setup-python@master
+      with:
+        python-version: 3.11
+    - name: Generate lint
+      run: |
+        pip install poetry
+        poetry config virtualenvs.create false
+        poetry install
+        poetry run task lint
+
   Test:
     runs-on: ${{ matrix.os }}
     strategy:
