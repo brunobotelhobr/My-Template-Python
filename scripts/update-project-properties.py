@@ -5,6 +5,7 @@ import yaml
 with open('pyproject.toml', 'r') as file:
     data = toml.load(file)
 
+
 print("Current project properties:")
 print(f"   name: {data['tool']['poetry']['name']}")
 print(f"   version: {data['tool']['poetry']['version']}")
@@ -17,7 +18,7 @@ print(f"   packages: {data['tool']['poetry']['packages']}")
 print(f"   repository: {data['tool']['poetry']['repository']}")
 print(f"   homepage: {data['tool']['poetry']['homepage']}")
 print(f"   keywords: {data['tool']['poetry']['keywords']}")
-print("")
+print(f"   docker-context: {data['tool']['taskipy']['variables']['docker_context']}")
 print("Type new values for the project properties or press enter to keet the actual value:")
 
 # Read new values
@@ -26,6 +27,7 @@ old_name = ""
 new_name = ""
 old_version = ""
 new_version = ""
+new_docker_context = ""
 update = False
 
 new_values = []
@@ -34,7 +36,10 @@ for key in data['tool']['poetry']:
         value = input(f"   {key} :")
         if value != "":
             new_values.append(f"{key} = \"{value}\"")
-
+value = input(f"   docker-context :")
+if value != "":
+    new_docker_context = value
+    update = True
 
 if len(new_values) > 0:
     """Update pyproject.toml"""
@@ -90,6 +95,10 @@ with open('pyproject.toml', 'r+') as f:
             if line.startswith('package_version = "'):
                 if (old_version is not None) and (new_version is not None):
                     lines[i] = line.replace(old_version, new_version)
+            if line.startswith('docker_context = "'):
+                if (new_docker_context is not None):
+                    lines[i] = line.replace(
+                        f"docker_context = \"{data['tool']['taskipy']['variables']['docker_context']}\"", f"docker_context = \"{new_docker_context}\"")
     f.seek(0)
     f.writelines(lines)
     f.truncate()
