@@ -79,7 +79,11 @@ jobs:
     - name: Test task upgrade
       run: task upgrade
     - name: Test task sec
-      run: task sec
+      run: |
+        export DOCKER_HOST='unix:///Users/runner/.local/share/containers/podman/machine/qemu/podman.sock'
+        alias docker="podman"
+        docker ps
+        task sec
     - name: Test task format
       run: task format
     - name: Test task lint
