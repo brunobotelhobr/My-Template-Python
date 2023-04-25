@@ -17,8 +17,9 @@ jobs:
         python-version: 3.11
     - name: Generate coverage report
       run: |
-        pip install pytest
-        pip install pytest-cov
+        pip install poetry
+        poetry config virtualenvs.create false
+        poetry install --without dev,docs
         pytest --cov=src --cov-report=xml
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
