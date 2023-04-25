@@ -66,9 +66,11 @@ jobs:
         curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
         brew install podman
         podman machine init
+        podman machine set --rootful
         sudo /usr/local/Cellar/podman/4.5.0/bin/podman-mac-helper install
         podman machine start
-        alias docker podman
+        export DOCKER_HOST='unix:///Users/runner/.local/share/containers/podman/machine/qemu/podman.sock'
+        alias docker="podman"
         pip install poetry
         poetry config virtualenvs.create false
         poetry install
