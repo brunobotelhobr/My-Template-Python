@@ -5,7 +5,7 @@ This script can be imported as a module and allows the user
 to make mathematical calc.
 
 Examples:
-    >>> from app import calc
+    >>> from app import calc.Calculator sd as calc
     >>> calc.add(2, 4)
     6.0
     >>> calc.multiply(2.0, 4.0)
@@ -27,144 +27,144 @@ The module contains the following functions:
 from typing import Union
 
 
-def add(a: Union[float, int], b: Union[float, int]) -> float:
-    """
-    Do addition of two numbers.
+class Calculator:
+    """Calculator class."""
 
-    Examples:
-        >>> add(4.0, 2.0)
-        6.0
-        >>> add(4, 2)
-        6.0
+    def add(self, a: Union[float, int], b: Union[float, int]) -> float:
+        """
+        Do addition of two numbers.
 
-    Args:
-        a: first number
-        b: second number
+        Examples:
+            >>> add(4.0, 2.0)
+            6.0
+            >>> add(4, 2)
+            6.0
 
-    Returns:
-        sum of the first and the second number
-    """
-    return float(a + b)
+        Args:
+            a: first number
+            b: second number
 
+        Returns:
+            sum of the first and the second number
+        """
+        return float(a + b)
 
-def subtract(
-    a: Union[float, int], b: Union[float, int]
-) -> float:  # pylint: disable=invalid-name
-    """
-    Do subtraction of two numbers.
+    def subtract(
+        self, a: Union[float, int], b: Union[float, int]
+    ) -> float:  # pylint: disable=invalid-name
+        """
+        Do subtraction of two numbers.
 
-    Examples:
-        >>> subtract(4.0, 2.0)
-        2.0
-        >>> subtract(4, 2)
-        2.0
+        Examples:
+            >>> subtract(4.0, 2.0)
+            2.0
+            >>> subtract(4, 2)
+            2.0
 
-    Args:
-        a: minuend
-        b: subtrahend
+        Args:
+            a: minuend
+            b: subtrahend
 
-    Returns:
-        the difference between the minuend minus the subtrahend
-    """
-    return float(a - b)
+        Returns:
+            the difference between the minuend minus the subtrahend
+        """
+        return float(a - b)
 
+    def multiply(
+        self, a: Union[float, int], b: Union[float, int]
+    ) -> float:  # pylint: disable=invalid-name
+        """
+        Do multiplication of two numbers.
 
-def multiply(
-    a: Union[float, int], b: Union[float, int]
-) -> float:  # pylint: disable=invalid-name
-    """
-    Do multiplication of two numbers.
+        Examples:
+            >>> multiply(4.0, 2.0)
+            8.0
+            >>> multiply(4, 2)
+            8.0
 
-    Examples:
-        >>> multiply(4.0, 2.0)
-        8.0
-        >>> multiply(4, 2)
-        8.0
+        Args:
+            a: first number
+            b: second number
 
-    Args:
-        a: first number
-        b: second number
+        Returns:
+            the product of the two numbers
+        """
+        return float(a * b)
 
-    Returns:
-        the product of the two numbers
-    """
-    return float(a * b)
+    def divide(
+        self, a: Union[float, int], b: Union[float, int]
+    ) -> float:  # pylint: disable=invalid-name
+        """
+        Do division of two numbers.
 
+        Examples:
+            >>> divide(4.0, 2.0)
+            2.0
+            >>> divide(4, 2)
+            2.0
+            >>> divide(4, 0)
+            Traceback (most recent call last):
+            ...
+            ZeroDivisionError: division by zero
 
-def divide(
-    a: Union[float, int], b: Union[float, int]
-) -> float:  # pylint: disable=invalid-name
-    """
-    Do division of two numbers.
+        Args:
+            a: dividend
+            b: divisor
 
-    Examples:
-        >>> divide(4.0, 2.0)
-        2.0
-        >>> divide(4, 2)
-        2.0
-        >>> divide(4, 0)
-        Traceback (most recent call last):
-        ...
-        ZeroDivisionError: division by zero
+        Raises:
+            ZeroDivisionError: gets raised when the divisor is `0`
 
-    Args:
-        a: dividend
-        b: divisor
+        Returns:
+            the quotient
+        """
+        if b == 0:
+            raise ZeroDivisionError("division by zero")
+        return float(a / b)
 
-    Raises:
-        ZeroDivisionError: gets raised when the divisor is `0`
+    def power(
+        self, base: Union[float, int], exponent: Union[float, int] = 2.0
+    ) -> float:  # pylint: disable=invalid-name
+        """
+        Do exponentiation of a number.
 
-    Returns:
-        the quotient
-    """
-    if b == 0:
-        raise ZeroDivisionError("division by zero")
-    return float(a / b)
+        Examples:
+            >>> power(4.0, 2.0)
+            16.0
+            >>> power(4, 2)
+            16.0
+            >>> power(4)
+            16.0
 
+        Args:
+            base: the base number
+            exponent: the exponent used
 
-def power(
-    base: Union[float, int], exponent: Union[float, int] = 2.0
-) -> float:  # pylint: disable=invalid-name
-    """
-    Do exponentiation of a number.
+        Returns:
+            the result of taking the base to the exponent
+        """
+        return float(base**exponent)
 
-    Examples:
-        >>> power(4.0, 2.0)
-        16.0
-        >>> power(4, 2)
-        16.0
-        >>> power(4)
-        16.0
+    def sqrt(
+        self, a: Union[float, int]
+    ) -> float:  # pylint: disable=invalid-name
+        """
+        Do square root of a number.
 
-    Args:
-        base: the base number
-        exponent: the exponent used
+        Examples:
+            >>> sqrt(4.0)
+            2.0
+            >>> sqrt(4)
+            2.0
 
-    Returns:
-        the result of taking the base to the exponent
-    """
-    return float(base**exponent)
+        Args:
+            a: the number that you want to take the square root of
 
+        Raises:
+            ValueError: raises if `a` is below `0`
 
-def sqrt(a: Union[float, int]) -> float:  # pylint: disable=invalid-name
-    """
-    Do square root of a number.
-
-    Examples:
-        >>> sqrt(4.0)
-        2.0
-        >>> sqrt(4)
-        2.0
-
-    Args:
-        a: the number that you want to take the square root of
-
-    Raises:
-        ValueError: raises if `a` is below `0`
-
-    Returns:
-        the square root of `a`
-    """
-    if a < 0:
-        raise ValueError("math domain error")
-    return float(a ** (1 / 2))
+        Returns:
+            the square root of `a`
+        """
+        if a < 0:
+            raise ValueError("math domain error")
+        return float(a ** (1 / 2))

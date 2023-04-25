@@ -1,3 +1,4 @@
+"""Update project properties in pyproject.toml and mkdocs.yml"""
 import toml
 import yaml
 
@@ -5,7 +6,6 @@ with open('pyproject.toml', 'r') as file:
     data = toml.load(file)
 
 print("Current project properties:")
-
 print(f"   name: {data['tool']['poetry']['name']}")
 print(f"   version: {data['tool']['poetry']['version']}")
 print(f"   license: {data['tool']['poetry']['license']}")
@@ -17,7 +17,6 @@ print(f"   packages: {data['tool']['poetry']['packages']}")
 print(f"   repository: {data['tool']['poetry']['repository']}")
 print(f"   homepage: {data['tool']['poetry']['homepage']}")
 print(f"   keywords: {data['tool']['poetry']['keywords']}")
-print(f"   dependencies: {data['tool']['poetry']['dependencies']}")
 print("")
 print("Type new values for the project properties or press enter to keet the actual value:")
 
@@ -25,10 +24,13 @@ print("Type new values for the project properties or press enter to keet the act
 new_values = []
 old_name = ""
 new_name = ""
+old_version = ""
+new_version = ""
 update = False
+
 new_values = []
 for key in data['tool']['poetry']:
-    if key != "group":
+    if key != "group" and key != "dependencies" and key != "dev-dependencies":
         value = input(f"   {key} :")
         if value != "":
             new_values.append(f"{key} = \"{value}\"")
@@ -45,6 +47,11 @@ if len(new_values) > 0:
                 old_name = data['tool']['poetry'][new_value.split('=')[
                     0].strip()]
                 new_name = new_value.split('=')[1].strip().replace("\"", "")
+                update = True
+            if new_value.split('=')[0].strip() == "version":
+                old_version = data['tool']['poetry'][new_value.split('=')[
+                    0].strip()]
+                new_version = new_value.split('=')[1].strip().replace("\"", "")
                 update = True
         file.seek(0)
         file.write(data_str)
@@ -75,7 +82,14 @@ with open('pyproject.toml', 'r+') as f:
     if update is True:
         for i, line in enumerate(lines):
             if line.startswith('packages = [{include = "'):
-                lines[i] = line.replace(old_name, new_name)
+                if (old_name is not None) and (new_name is not None):
+                    lines[i] = line.replace(old_name, new_name)
+            if line.startswith('package_name = "'):
+                if (old_name is not None) and (new_name is not None):
+                    lines[i] = line.replace(old_name, new_name)
+            if line.startswith('package_version = "'):
+                if (old_version is not None) and (new_version is not None):
+                    lines[i] = line.replace(old_version, new_version)
     f.seek(0)
     f.writelines(lines)
     f.truncate()

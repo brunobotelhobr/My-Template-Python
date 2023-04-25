@@ -1,7 +1,9 @@
 """Test the calc module."""
 import unittest
 
-from app import calc
+from app.calc import Calculator
+
+calc = Calculator()
 
 
 class TestCalc(unittest.TestCase):

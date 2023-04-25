@@ -1,79 +1,177 @@
 # My-Python-Template
-This is a template for python projects.
-Suuporting:
-    [x] Poetry: for package management.
-    [x] AutoFormating Tools
-        [x] Black: for code formatting.
-        [x] Isort: for imports formatting.
-        [x] autoflake: for unused imports and variables.
-    [x] Linting Tools
-        [x] Flake8: for code linting.
-        [x] Pylint: for code linting.
-        [x] Mypy: for type checking.
-    [x] Export Requirements
-        [x] cyclonedx-py: for export requirements in CycloneDX format.
-    [x] Security Tools
-        [x] Trivy: for scan vulnerabilities in packages.
-        [x] Bandit: for security linting.
-    [x] Testing Tools
-        [x] Pytest: for testing.
-        [x] Pytest-cov: for coverage.
-    [x] Pre-Commit: for run all the tools before commit.
-    [x] Makefile: for run all the tools with make commands.
+This is a template repository for Python projects. 
+It uses Poetry for dependency management and includes pre-configured tools such as Black, Flake8, mypy, Pylint, pytest, and others, for formatting, linting, testing, and documentation management. 
+The project also includes security tools like Trivy and Bandit. 
+The pyproject.toml file contains various configurations like project metadata, dependencies, build system, and commands for release and documentation management.
 
-Check our [Documentation](https://brunobotelhobr.github.io/My-Python-Template/)
+To have more details, check the [Documentation](https://brunobotelhobr.github.io/My-Template-Python/)
 
-# How to use
-Install the Requirements
+## Features
+- Project Management
+    - ✅ [Poetry](https://python-poetry.org/docs/)
+    - ✅ Script to manage project metadata (Name, Version, Description, etc)
+    - ✅ Script to Upgrade all dependencies
+    - ✅ Script to clean all temporary files
+- Code Formatting
+    - ✅ [Black](https://github.com/psf/black)
+    - ✅ [isort](https://pycqa.github.io/isort/)
+    - ✅ [autoflake](https://github.com/myint/autoflake)  
+- Code Linting
+    - ✅ [Pylint](https://www.pylint.org/)
+    - ✅ [Flake8](https://flake8.pycqa.org/en/latest/)
+    - ✅ [Mypy](https://mypy.readthedocs.io/en/stable/)
+- Testing
+    - ✅ [Pytest](https://docs.pytest.org/en/stable/)
+    - ✅ [Coverage](https://coverage.readthedocs.io/en/coverage-5.5/)
+    - ✅ Default tests structure folder for unit and functional tests
+- Security
+    - ✅ [Trivy](https://aquasecurity.github.io/trivy/v0.40/getting-started/installation/)
+    - ✅ [Bandit](https://pypi.org/project/bandit/)
+    - ✅ [Horusec](https://horusec.io/docs/quick-start/installation/)
+- Autoamtion commands
+    - ✅ [Taskipy](https://github.com/taskipy/taskipy)
+- PyPI
+    - ✅ Scripts to build and publish to PyPI
+- Docker
+    - ✅ Scripts to build and publish to Docker Hub
+- Documentation
+    - ✅ [MkDocs](https://www.mkdocs.org/)
+    - ✅ [MkDocs Material Theme](https://squidfunk.github.io/mkdocs-material/)
+    - ✅ [MkDocs Versioning] with mike](https://github.com/jimporter/mike)
+    - ✅ Scripts to generate SBOM (Software Bill of Materials)
+    - ✅ Scripts to generate requirements.txt
+
+## Tasks
+This project uses [Taskipy](https://github.com/taskipy/taskipy) to automate common development tasks.
+All tasks are defined in the `pypoject.toml` file.
+Almost all tools used in this project uses `pyproject.toml` to 
+
+List of preset tasks:
+````
+task --list
+pre-commit     Run all pre-commit tasks
+pre-release    Run all pre-release tasks
+-----------    ----------------------------------------
+info           Show project info
+meta           Update project properties
+upgrade        Upgrade all dependencies
+sec            Run all security checks
+format         Run all formaters
+lint           Run all linters
+bom            Generate BOM
+req            Generate requirements.txt
+test           Run all tests
+pypi-build     Build package for PyPI
+pypi-auth      Authenticate to PyPI
+pypi-publish   Publish package to PyPI
+docker-list    List docker images
+docker-build   Build docker image
+docker-auth    Authenticate to Docker Hub
+docker-publish Publish docker image to Docker Hub
+docs           Run docs server
+docs-list      List docs versions
+docs-build     Add a new version to docs
+docs-delete    Delete a version of the docs
+docs-latest    Set the latest Version.
+docs-purge     Purge all versions of the docs.
+docs-pub       Publish documentation to the doc branch on GitHub.
+clear          Clean all generated files
+````
 
 ## Requirements
 You must install manually the following tools:
-Install [Make](https://www.gnu.org/software/make/)
-Install [Python](https://www.python.org/downloads/)
-Install [Poetry](https://python-poetry.org/docs/#installation)
-Install [Trivy](https://aquasecurity.github.io/trivy/v0.40/getting-started/installation/)
+- Install [Python](https://www.python.org/downloads/)
+- Install [Poetry](https://python-poetry.org/docs/#installation)
+- Install [Trivy](https://aquasecurity.github.io/trivy/v0.40/getting-started/installation/)
+- Install [Horusec](https://horusec.io/docs/quick-start/installation/)
+- Install [Docker](https://docs.docker.com/get-docker/)
 
 Be sure you have installed all the requirements and that you on the desired python Version, you can check it with: 
     `python --version`
 
 ## Setup
-Run `make install-dev` to install all the dev dependencies.
-Run `make info` to check your environment.
-Run `make update` to update all the dependencies.
-Run `make bom` to export the requirements in CycloneDX format.
-Run `make req` to export the requirements in txt format.
-Run `make test-cov` to run the tests with coverage.
-Run `make enable-hooks` to enable the pre-commit hooks.
-Run `project-meta` to update the project metadata (name, version and license).
+```shell
+# Clone the repository
+git clone https://github.com/brunobotelhobr/My-Template=Python.git
 
-## Make Commands
-All the commands are listed below:
-`make`
+# Check the python version, you must use the version that the project will use.
+python -V
 
-    install-dev   install all the development dependencies
-    install-prod  install only the production dependencies
-    info          show the project information
-    format        reformat code
-    lint          run the code linters
-    upgrade       upgrade the dependencies
-    bom           generate the bill of materials
-    req           export the requirements to a requirements.txt file
-    test          run all the tests
-    test-cov      run all the tests and show test coverage
-    enable-hooks  enable the pre-commit hooks
-    disable-hooks disable the pre-commit hooks
-    project-meta  update the project metadata data, like version and name
-    build-pypi    build the package
-    pypi-token    set the pypi API token
-    publish-pypi  publish the package to pypi
-    clean         remove all temporary files
+# Install the dependencies
+pip install poetry
+poetry shell
+poetry install
+
+# Check the taskipi commands:
+task --list
+
+# Update projetct metadata
+task meta
+```
+
+## How Start?
+
+### 1. Fork the project
+```shell
+# Clone the repository
+git clone
+
+# Check the python version, you must use the version that the project will use.
+python -V
+
+# Install the dependencies
+pip install poetry
+poetry shell
+poetry install
+
+# Check the taskipi commands:
+task --list
+```
+
+### 2. Create a new branch with your changes
+```shell
+# Create a new branch
+git checkout -b <branch-name>
+```
+
+### 3. Make the changes and commit
+```shell
+# Check for lint errors
+task format
+task lint
+
+# Check for security errors
+task sec
+
+# Update the meta
+task meta
+task bom
+task req
+
+# Add the changes
+git add .
+```
+
+### 4. Open a Pull Request
+```shell
+git commit -m "feat: add a new feature"
+git push origin <branch-name>
+```
 
 ## Hints
 - How add a Dev Package
-    `poetry add --dev <package-name>`
+   -  `poetry add --dev <package-name>`
 - How add a Prod Package
-    `poetry add <package-name>`
+    - `poetry add <package-name>`
 - How add a Package with extras
-    `poetry add <package-name> -E <extras>`
+    - `poetry add <package-name> -E <extras>`
 - How remove a Package
-    `poetry remove <package-name>`
+    - `poetry remove <package-name>`
+
+## Call for Contributors
+We invite you to contribute to this repository and help us make it even better. 
+Whether it's bug fixes, new features, or documentation improvements, we welcome all contributions. 
+Please read our documentation for guidelines on how to contribute. 
+Happy coding!
+
+check the [Documentation](https://brunobotelhobr.github.io/My-Template-Python/) for more details.

@@ -1,40 +1,47 @@
-This part of the project documentation focuses on a
-**problem-oriented** approach. You'll tackle common
-tasks that you might have with the help of the code
-provided in this project.
+# FAQ
 
-## How To Add Two Numbers?
+## How use the documentation?
 
-You have two numbers and you need to add them together.
-You're in luck! The `calculator` package can help you
-get this done.
+The documentation is made with [mkdocs](http://www.mkdocs.org/). 
+It will generate a static website from the markdown files inside the docs folder.
+By default, the documentation is stored in the `documentation` branch. 
+If you would like to change it check at `pyproject.toml`.
+````toml
+[tool.taskipy.variables]
+src_dir = "src"
+docs_branch = "documentation"
+````
 
-Download the code from this GitHub repository and place
-the `calculator/` folder in the same directory as your
-Python script:
+To check how the documentation looks like, you can run the following command:
 
-    your_project/
-    │
-    ├── calculator/
-    │   ├── __init__.py
-    │   └── calculations.py
-    │
-    └── your_script.py
+```bash
+task docs-serve
+```
 
-Inside of `your_script.py` you can now import the
-`add()` function from the `calculator.calculations`
-module:
+To build the documentation, you can run the following command:
 
-    # your_script.py
-    from calculator.calculations import add
+```bash
+task docs-build
+```
 
-After you've imported the function, you can use it
-to add any two numbers that you need to add:
+To list all the available documentation versions available, you can run the following command:
 
-    # your_script.py
-    from calculator.calculations import add
+```bash
+task docs-list
+```
 
-    print(add(20, 22))  # OUTPUT: 42.0
+To delete a documentation version, you can run the following command:
 
-You're now able to add any two numbers and you'll
-always get a `float` as a result.
+```bash
+task docs-delete
+```
+
+To publish the documentation, you can run the following command:
+
+```bash
+task docs-pub
+```
+
+### Warning
+Dont forget to set setup git to use the documentation branch as the site branch.
+To do this, on your repository, go to Settings > Options > GitHub Pages and set the branch to documentation.

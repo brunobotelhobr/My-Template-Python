@@ -8,15 +8,14 @@ markdown_extensions:
 - attr_list
 - pymdownx.superfences:
     custom_fences:
-      - name: mermaid
-        class: mermaid
-        format: !!python/name:pymdownx.superfences.fence_code_format
+    - class: mermaid
+      name: mermaid
 nav:
-- Home: index.md
+- Home: index.mdpoetr
 - Install: install.md
 - Manual: manual.md
 - FAQ: faq.md
-- Contribute: how-to-guides.md
+- How to Contribute: how-to-guides.md
 - Code: code.md
 plugins:
 - mkdocstrings: null
@@ -44,6 +43,3 @@ theme:
       name: Switch to light mode
 watch:
 - src
-
-
-
