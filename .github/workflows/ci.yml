@@ -53,3 +53,27 @@ jobs:
         flags: unittests
         name: codecov-umbrella
         verbose: true
+
+  Security:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    env:
+      OS: ${{ matrix.os }}
+      PYTHON: '3.11'
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup Python
+      uses: actions/setup-python@master
+      with:
+        python-version: 3.11
+    - name: Run Security Checks
+      run: |
+        curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v0.40.0
+        curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
+        sudo dpkg -i trivy_0.18.3_Linux-64bit.de
+        pip install poetry
+        poetry config virtualenvs.create false
+        poetry install
+        
