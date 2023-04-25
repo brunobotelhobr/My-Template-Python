@@ -22,7 +22,7 @@ jobs:
         poetry install
         poetry run task lint
 
-  Test:
+  Test-Code:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -59,6 +59,33 @@ jobs:
     - name: Test Docker Build
       run: |
         docker build -t test_img:ci-test .
+
+  Test-Build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    env:
+      OS: ${{ matrix.os }}
+      PYTHON: '3.11'
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup Python
+      uses: actions/setup-python@master
+      with:
+        python-version: 3.11
+    - name: Install Requirements
+      run: |
+        pip install poetry
+        poetry config virtualenvs.create false
+        poetry install
+    - name: Test Package Build
+      run: |
+        poetry build
+    - name: Test Docker Build
+      run: |
+        docker build -t test_img:ci-test .
+        
   Security:
     runs-on: ${{ matrix.os }}
     strategy:
