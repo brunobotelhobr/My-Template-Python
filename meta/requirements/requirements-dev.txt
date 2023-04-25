@@ -225,9 +225,9 @@ pbr==5.11.1 ; python_version >= "3.11" and python_version < "4.0" \
 pip-requirements-parser==32.0.1 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:4659bc2a667783e7a15d190f6fccf8b2486685b6dba4c19c3876314769c57526 \
     --hash=sha256:b4fa3a7a0be38243123cf9d1f3518da10c51bdb165a2b2985566247f9155a7d3
-platformdirs==3.2.0 ; python_version >= "3.11" and python_version < "4.0" \
-    --hash=sha256:d5b638ca397f25f979350ff789db335903d7ea010ab28903f57b27e1b16c2b08 \
-    --hash=sha256:ebe11c0d7a805086e99506aa331612429a72ca7cd52a1f0d277dc4adc20cb10e
+platformdirs==3.3.0 ; python_version >= "3.11" and python_version < "4.0" \
+    --hash=sha256:64370d47dc3fca65b4879f89bdead8197e93e05d696d6d1816243ebae8595da5 \
+    --hash=sha256:ea61fd7b85554beecbbd3e9b37fb26689b227ffae38f73353cbcc1cf8bd01878
 pluggy==1.0.0 ; python_version >= "3.11" and python_version < "4.0" \
     --hash=sha256:4224373bacce55f955a878bf9cfa763c1e360858e330072059e10bad68531159 \
     --hash=sha256:74134bbf457f031a36d68416e1509f34bd5ccc019f0bcc952c7b909d06b37bd3
