@@ -7,17 +7,21 @@ print("----------------------------------------------------------------")
 
 #Get the tirst argument
 parser = argparse.ArgumentParser()
-parser.add_argument("branch", help="The branch to update the documentation for")
+parser.add_argument("branch", help="The doucmentation branch")
 args = parser.parse_args()
-branch = args.branch
 
-CURRENT_BRANCH = str(os.system("git rev-parse --abbrev-ref HEAD) > /dev/null"))
+DOC_BRANCH = args.branch
+
+#Run a command and get the output as a string
+
+CURRENT_BRANCH = os.popen("git rev-parse --abbrev-ref HEAD").read()
 print("Current Branch: " + CURRENT_BRANCH)
+print("Documentation Branch: " + DOC_BRANCH)
 
-os.system("git checkout " + branch + " > /dev/null")
-print("Current Branch: " + branch)
+os.system("git checkout " + DOC_BRANCH + " > /dev/null")
+print("Current Branch: " +DOC_BRANCH)
 
-os.system("git add * > /dev/null")
-os.system("git commit -m 'Task: Update Documentation' > /dev/null")
-os.system("git push --set-upstream origin " + branch)
-os.system("git checkout " + CURRENT_BRANCH + "  > /dev/null")
+# os.system("git add * > /dev/null")
+# os.system("git commit -m 'Task: Update Documentation' > /dev/null")
+# os.system("git push --set-upstream origin " + branch)
+# os.system("git checkout " + CURRENT_BRANCH + "  > /dev/null")
