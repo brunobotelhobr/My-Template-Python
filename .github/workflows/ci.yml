@@ -53,12 +53,7 @@ jobs:
         flags: unittests
         name: codecov-umbrella
         verbose: true
-    - name: Test Package Build
-      run: |
-        poetry build
-    - name: Test Docker Build
-      run: |
-        docker build -t test_img:ci-test .
+
 
   Test-Build:
     runs-on: ${{ matrix.os }}
