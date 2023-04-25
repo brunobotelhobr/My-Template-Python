@@ -81,8 +81,7 @@ docs-pub       Publish documentation to the doc branch on GitHub.
 clear          Clean all generated files
 ````
 
-
-Project Structure
+## Project Structure
 ````text
 .
 ├── Dockerfile
@@ -139,4 +138,4 @@ Whether it's bug fixes, new features, or documentation improvements, we welcome 
 Please read our documentation for guidelines on how to contribute. 
 Happy coding!
 
-Start by the [Install](install.md) page.
+Start by the [Install](install.md) page, than go to the [How to Contribut](how-to-guides.md) to learn how to contribute to this project.

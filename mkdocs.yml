@@ -11,7 +11,7 @@ markdown_extensions:
     - class: mermaid
       name: mermaid
 nav:
-- Home: index.mdpoetr
+- Home: index.md
 - Install: install.md
 - Manual: manual.md
 - FAQ: faq.md
