@@ -14,7 +14,6 @@ COPY pyproject.toml README.md /code
 # Install the packages
 # Disable virtualenvs creation
 RUN poetry config virtualenvs.create false
-RUN ls
 RUN poetry install --without dev,docs
 
 # Add App User
