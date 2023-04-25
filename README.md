@@ -3,8 +3,6 @@
 ![GitHub Action CI](https://github.com/brunobotelhobr/My-Template-Python/actions/workflows/ci.yml/badge.svg)
 [![codecov](https://codecov.io/gh/brunobotelhobr/My-Template-Python/branch/main/graph/badge.svg?token=EPMON2XJW2)](https://codecov.io/gh/brunobotelhobr/My-Template-Python)
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/brunobotelhobr)
-
 This is a template repository for Python projects. 
 It uses Poetry for dependency management and includes pre-configured tools such as Black, Flake8, mypy, Pylint, pytest, and others, for formatting, linting, testing, and documentation management. 
 The project also includes security tools like Trivy and Bandit. 
@@ -178,6 +176,9 @@ git push origin <branch-name>
 We invite you to contribute to this repository and help us make it even better. 
 Whether it's bug fixes, new features, or documentation improvements, we welcome all contributions. 
 Please read our documentation for guidelines on how to contribute. 
+
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/brunobotelhobr)
 Happy coding!
 
 check the [Documentation](https://brunobotelhobr.github.io/My-Template-Python/) for more details.
