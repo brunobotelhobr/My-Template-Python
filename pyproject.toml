@@ -121,7 +121,7 @@ docs-build = { cmd = "echo 'Acutal versions: '&& task docs-list && echo 'Type th
 docs-delete = { cmd = "echo 'Acutal versions: '&& task docs-list && echo 'Type the version to delete:' && read DOCUMENTS_VERSION && mike delete -b {docs_branch} $DOCUMENTS_VERSION && unset DOCUMENTS_VERSION", help = "Delete a version of the docs" }
 docs-latest = { cmd = "echo 'Acutal versions: '&& task docs-list && echo 'Type the version to set as latest:' && read DOCUMENTS_VERSION && mike set-default -b {docs_branch} $DOCUMENTS_VERSION && mike alias -b {docs_branch} -u $DOCUMENTS_VERSION latest && unset DOCUMENTS_VERSION", help = "Set the latest Version." }
 docs-purge = { cmd = "mike delete --all -b {docs_branch}", help = "Purge all versions of the docs." }
-docs-pub = { cmd = "sh scripts/update-doc.sh {docs_branch}", help = "Publish documentation to the doc branch on GitHub." }
+docs-pub = { cmd = "python scripts/update-doc.py {docs_branch}", help = "Publish documentation to the doc branch on GitHub." }
 clear = { cmd = "rm -rf .venv && rm -rf .pytest_cache && rm -rf .coverage && rm -rf dist && rm -rf site &&find . -type d -name __pycache__ > /dev/null", help = "Clean all generated files" }
 
 
