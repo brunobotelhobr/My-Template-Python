@@ -9,7 +9,7 @@ RUN pip install --upgrade poetry
 # Install the package
 WORKDIR /code
 COPY src src
-COPY pyproject.toml README.md /code
+COPY pyproject.toml /code/pyproject.toml
 
 # Install the packages
 # Disable virtualenvs creation
@@ -21,6 +21,9 @@ RUN useradd -m -d /code -s /bin/bash app \
     && chown -R app:app /code/*
 
 USER app
+
+HEALTHCHECK --interval=30s --timeout=3s \
+    CMD python /code/src/app/main.py version || exit 1
 
 # Define the entrypoint
 ENTRYPOINT ["python", "/code/src/app/main.py"]
