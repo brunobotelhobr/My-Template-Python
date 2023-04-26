@@ -87,7 +87,7 @@ docs-delete    Delete a version of the docs
 docs-latest    Set the latest Version.
 docs-purge     Purge all versions of the docs.
 docs-pub       Publish documentation to the doc branch on GitHub.
-clear          Clean all generated files
+clean          Clean all generated files
 ````
 
 ## Requirements
