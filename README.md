@@ -97,11 +97,11 @@ clean          Clean all generated files
 ## Requirements
 You must install manually the following tools:
 
-    - Install [Python](https://www.python.org/downloads/)
-    - Install [Poetry](https://python-poetry.org/docs/#installation)
-    - Install [Trivy](https://aquasecurity.github.io/trivy/v0.40/getting-started/installation/)
-    - Install [Horusec](https://horusec.io/docs/quick-start/installation/)
-    - Install [Docker](https://docs.docker.com/get-docker/)
+- Install [Python](https://www.python.org/downloads/)
+- Install [Poetry](https://python-poetry.org/docs/#installation)
+- Install [Trivy](https://aquasecurity.github.io/trivy/v0.40/getting-started/installation/)
+- Install [Horusec](https://horusec.io/docs/quick-start/installation/)
+- Install [Docker](https://docs.docker.com/get-docker/)
 
 Be sure you have installed all the requirements and that you on the desired python Version, you can check it with: 
     `python --version`
