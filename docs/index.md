@@ -9,9 +9,13 @@
 [![codecov](https://codecov.io/gh/brunobotelhobr/My-Template-Python/branch/main/graph/badge.svg?token=EPMON2XJW2)](https://codecov.io/gh/brunobotelhobr/My-Template-Python)
 
 This is a template repository for Python projects. 
-It uses Poetry for dependency management and includes pre-configured tools such as Black, Flake8, mypy, Pylint, pytest, and others, for formatting, linting, testing, and documentation management. 
-The project also includes security tools like Trivy and Bandit. 
+
+It uses Poetry for dependency management and includes pre-configured tools such as black, flake8, mypy, pylint, pytest, and others, for formatting, linting, testing, and documentation management. 
+The project also includes security tools like trivy and bandit. 
+
 The pyproject.toml file contains various configurations like project metadata, dependencies, build system, and commands for release and documentation management.
+
+To have more details, check the [Documentation](https://brunobotelhobr.github.io/My-Template-Python/)
 
 ## Features
 - Project Management
@@ -53,8 +57,10 @@ The pyproject.toml file contains various configurations like project metadata, d
 
 ## Tasks
 This project uses [Taskipy](https://github.com/taskipy/taskipy) to automate common development tasks.
+
 All tasks are defined in the `pypoject.toml` file.
-Almost all tools used in this project uses `pyproject.toml` to 
+
+Almost all tools used in this project uses `pyproject.toml` to store their configurations.
 
 List of preset tasks:
 ````
@@ -139,11 +145,11 @@ clean           Clean all generated files
 ## Requirements
 You must install manually the following tools:
 
-    - Install [Python](https://www.python.org/downloads/)
-    - Install [Poetry](https://python-poetry.org/docs/#installation)
-    - Install [Trivy](https://aquasecurity.github.io/trivy/v0.40/getting-started/installation/)
-    - Install [Horusec](https://horusec.io/docs/quick-start/installation/)
-    - Install [Docker](https://docs.docker.com/get-docker/)
+- Install [Python](https://www.python.org/downloads/)
+- Install [Poetry](https://python-poetry.org/docs/#installation)
+- Install [Trivy](https://aquasecurity.github.io/trivy/v0.40/getting-started/installation/)
+- Install [Horusec](https://horusec.io/docs/quick-start/installation/)
+- Install [Docker](https://docs.docker.com/get-docker/)
 
 Be sure you have installed all the requirements and that you on the desired python Version, you can check it with: 
     `python --version`
