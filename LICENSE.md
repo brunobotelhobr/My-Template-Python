@@ -1,3 +1,2 @@
-license:mit
-
+MIT License
 This project is licensed under the terms of the MIT license.
