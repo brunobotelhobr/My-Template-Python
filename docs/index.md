@@ -13,8 +13,6 @@ It uses Poetry for dependency management and includes pre-configured tools such 
 The project also includes security tools like Trivy and Bandit. 
 The pyproject.toml file contains various configurations like project metadata, dependencies, build system, and commands for release and documentation management.
 
-To have more details, check the [Documentation](https://brunobotelhobr.github.io/My-Template-Python/)
-
 ## Features
 - Project Management
     - ✅ [Poetry](https://python-poetry.org/docs/)
