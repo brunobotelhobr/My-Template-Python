@@ -3,9 +3,9 @@
 ![Project Logo](assets/logo.png){: width=160 .center}
 # My-Python-Template
 
-![GitHub Action CI](https://github.com/brunobotelhobr/My-Template-Python/actions/workflows/ci.yml/badge.svg)
-![GitHub Action CodeQL](https://github.com/brunobotelhobr/My-Template-Python/actions/workflows/codeql.yml/badge.svg)
-![GitHub Action Trivy](https://github.com/brunobotelhobr/My-Template-Python/actions/workflows/trivy.yml/badge.svg)
+![GitHub Action CI](https://github.com/brunobotelhobr/My-Template-Python/actions/workflows/ci.yml/badge.svg?branch=main)
+![GitHub Action CodeQL](https://github.com/brunobotelhobr/My-Template-Python/actions/workflows/codeql.yml/badge.svg?branch=main)
+![GitHub Action Trivy](https://github.com/brunobotelhobr/My-Template-Python/actions/workflows/trivy.yml/badge.svg?branch=main)
 [![codecov](https://codecov.io/gh/brunobotelhobr/My-Template-Python/branch/main/graph/badge.svg?token=EPMON2XJW2)](https://codecov.io/gh/brunobotelhobr/My-Template-Python)
 
 This is a template repository for Python projects. 
