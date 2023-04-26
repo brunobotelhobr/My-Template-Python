@@ -17,7 +17,7 @@ typer = {version = "^0.7.0", extras = ["rich"]}
 importlib-metadata = "^6.6.0"
 
 [tool.poetry.group.dev.dependencies]
-poetry add --dev Flake8-pyproject  
+flake8-pyproject = "^1.2.3"
 black = "^23.3.0"
 isort = "^5.12.0"
 flake8 = "^6.0.0"
@@ -123,6 +123,6 @@ docs-delete = { cmd = "echo 'Acutal versions: '&& task docs-list && echo 'Type t
 docs-latest = { cmd = "echo 'Acutal versions: '&& task docs-list && echo 'Type the version to set as latest:' && read DOCUMENTS_VERSION && mike set-default -b {docs_branch} $DOCUMENTS_VERSION && mike alias -b {docs_branch} -u $DOCUMENTS_VERSION latest && unset DOCUMENTS_VERSION", help = "Set the latest Version." }
 docs-purge = { cmd = "mike delete --all -b {docs_branch}", help = "Purge all versions of the docs." }
 docs-pub = { cmd = "python scripts/update-doc.py {docs_branch}", help = "Publish documentation to the doc branch on GitHub." }
-clear = { cmd = "rm -rf .venv && rm -rf .pytest_cache && rm -rf .coverage && rm -rf dist && rm -rf site &&find . -type d -name __pycache__ > /dev/null", help = "Clean all generated files" }
+clean = { cmd = "rm -rf .venv && rm -rf .pytest_cache && rm -rf .coverage && rm -rf dist && rm -rf site && find . -type d -name __pycache__ | xargs rm -rf > /dev/null", help = "Clean all generated files" }
 
 
