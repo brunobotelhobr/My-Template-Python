@@ -2,6 +2,8 @@
 name: "SCA Trivy"
 
 on:
+  push:
+    branches: [ "main" ]
   schedule:
     - cron: '39 3 * * 1'
 
