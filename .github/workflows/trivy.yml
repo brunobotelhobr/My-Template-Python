@@ -6,35 +6,38 @@ on:
     - cron: '39 3 * * 1'
 
 jobs:
-    scan:
-      runs-on: ubuntu-latest
-      permissions:
-        actions: read
-        contents: read
-        security-events: write
-
-      steps:
+  scan:
+    name: 'SCA Trivy'
+    runs-on: ubuntu-latest
+    steps:
       - name: Download Code
         uses: actions/checkout@v2
 
       - name: SCA IAC
         uses: aquasecurity/trivy-action@master
         with:
-          scan-type: "config"
+          scan-type: 'config'
           hide-progress: false
-          format: "table"
           exit-code: "1"
           ignore-unfixed: true
-          severity: "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"
-          skip-dirs: ./test
+          severity: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
 
       - name: SCA Dependencies
         uses: aquasecurity/trivy-action@master
         with:
-          scan-type: "fs"
+          scan-type: 'fs'
           hide-progress: false
-          format: "table"
           exit-code: "1"
           ignore-unfixed: true
-          severity: "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"
-          skip-dirs: ./test
+          severity: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
+
+      - name: Generate Image
+        run: |
+          docker build -t temp .
+          docker save -o vuln-image.tar temp
+        
+      - name: SCA Image
+        uses: aquasecurity/trivy-action@master
+        with:
+          input: /github/workspace/vuln-image.tar
+          severity: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
