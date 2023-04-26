@@ -64,34 +64,35 @@ Almost all tools used in this project uses `pyproject.toml` to store their confi
 
 List of preset tasks:
 ````
-task --list
-pre-commit     Run all pre-commit tasks
-pre-release    Run all pre-release tasks
------------    ----------------------------------------
-info           Show project info
-meta           Update project properties
-upgrade        Upgrade all dependencies
-sec            Run all security checks
-format         Run all formaters
-lint           Run all linters
-bom            Generate BOM
-req            Generate requirements.txt
-test           Run all tests
-pypi-build     Build package for PyPI
-pypi-auth      Authenticate to PyPI
-pypi-pub       Publish package to PyPI
-docker-list    List docker images
-docker-build   Build docker image
-docker-auth    Authenticate to Docker Hub
-docker-pub     Publish docker image to Docker Hub
-docs           Run docs server
-docs-list      List docs versions
-docs-build     Add a new version to docs
-docs-delete    Delete a version of the docs
-docs-latest    Set the latest Version.
-docs-purge     Purge all versions of the docs.
-docs-pub       Publish documentation to the doc branch on GitHub.
-clean          Clean all generated files
+pre-commit      Run all pre-commit tasks
+pre-release     Run all pre-release tasks
+-----------     ----------------------------------------
+info            Show project info
+meta            Update project properties
+upgrade         Upgrade all dependencies
+sec             Run all security checks
+format          Run all formaters
+lint            Run all linters
+bom             Generate BOM
+req             Generate requirements.txt
+test            Run all tests
+pypi-build      Build package for PyPI
+pypi-auth       Authenticate to PyPI
+pypi-pub        Publish package to PyPI
+docker-list     List docker images
+docker-build    Build docker image
+docker-sec-scan Scan a docker image looking for vulenrabilities
+docker-auth     Authenticate to Docker Hub
+docker-latest   Tag a docker image as latest
+docker-pub      Publish docker image to Docker Hub
+docs            Run docs server
+docs-list       List docs versions
+docs-build      Add a new version to docs
+docs-delete     Delete a version of the docs
+docs-latest     Set the latest Version.
+docs-purge      Purge all versions of the docs.
+docs-pub        Publish documentation to the doc branch on GitHub.
+clean           Clean all generated files
 ````
 
 ## Requirements
