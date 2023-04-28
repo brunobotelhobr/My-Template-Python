@@ -181,10 +181,10 @@ task meta
 # Clone the repository:
 git clone
 
-# Check the python version, you must use the version that the project will use.
+# Check the python version, you must use the version that the project will use:
 python -V
 
-# Install the dependencies
+# Install the dependencies:
 pip install poetry
 poetry shell
 poetry install
