@@ -178,7 +178,7 @@ task meta
 
 ### 1. Fork the project
 ```shell
-# Clone the repository
+# Clone the repository:
 git clone
 
 # Check the python version, you must use the version that the project will use.
