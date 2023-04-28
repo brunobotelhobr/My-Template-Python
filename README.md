@@ -1,6 +1,5 @@
 # My-Python-Template
 
-
 ![Icon](https://brunobotelhobr.github.io/My-Template-Python/0.0.1/assets/logo.png)
 
 ![GitHub Action CI](https://github.com/brunobotelhobr/My-Template-Python/actions/workflows/ci.yml/badge.svg?branch=main)

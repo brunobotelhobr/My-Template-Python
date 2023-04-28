@@ -156,13 +156,13 @@ Be sure you have installed all the requirements and that you on the desired pyth
 
 ## Setup
 ```shell
-# Clone the repository
+# Clone the repository:
 git clone https://github.com/brunobotelhobr/My-Template=Python.git
 
-# Check the python version, you must use the version that the project will use.
+# Check the python version, you must use the version that the project will use:
 python -V
 
-# Install the dependencies
+# Install the dependencies:
 pip install poetry
 poetry shell
 poetry install
@@ -170,7 +170,7 @@ poetry install
 # Check the taskipi commands:
 task --list
 
-# Update projetct metadata
+# Update projetct metadata:
 task meta
 ```
 
