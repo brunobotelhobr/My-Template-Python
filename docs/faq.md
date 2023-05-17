@@ -1,6 +1,6 @@
 # FAQ
 
-## How use the documentation?
+## How the documentation works?
 
 The documentation is made with [mkdocs](http://www.mkdocs.org/). 
 It will generate a static website from the markdown files inside the docs folder.

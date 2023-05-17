@@ -1,4 +1,4 @@
-# How Contribute
+## How Contribute
 
 To Start Contributing, you must follow the steps below:
 
@@ -48,3 +48,4 @@ git add .
 git commit -m "feat: add a new feature"
 git push origin <branch-name>
 ```
+
