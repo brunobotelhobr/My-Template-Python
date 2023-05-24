@@ -38,7 +38,7 @@ taskipy = "^1.10.4"
 mkdocs-material = "^9.1.6"
 mkdocs = "^1.4.2"
 mkdocs-material-extensions = "^1.1.1"
-pymdown-extensions = "^9.11"
+pymdown-extensions = "^10.0"
 mkdocstrings = {version = "^0.21.2", extras = ["python"]}
 mike = "^1.1.2"
 
