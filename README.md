@@ -38,7 +38,7 @@ To have more details, check the [Documentation](https://brunobotelhobr.github.io
     - ✅ [Trivy](https://aquasecurity.github.io/trivy/v0.40/getting-started/installation/)
     - ✅ [Bandit](https://pypi.org/project/bandit/)
     - ✅ [Horusec](https://horusec.io/docs/quick-start/installation/)
-- Autoamtion commands
+- Automation commands
     - ✅ [Taskipy](https://github.com/taskipy/taskipy)
 - PyPI
     - ✅ Scripts to build and publish to PyPI
